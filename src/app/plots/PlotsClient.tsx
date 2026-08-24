@@ -10,7 +10,8 @@ import {
   MapPin, 
   FileCheck, 
   Compass, 
-  CheckCircle2 
+  CheckCircle2,
+  SlidersHorizontal
 } from 'lucide-react';
 import { Property } from '@/types';
 import PropertyCard from '@/components/properties/PropertyCard';
@@ -123,26 +124,55 @@ export default function PlotsClient({ initialProperties }: PlotsClientProps) {
         </div>
 
         {/* Filter Bar */}
-        <div className="bg-white dark:bg-charcoal-900 rounded-2xl p-5 border border-neutral-200 dark:border-charcoal-800 shadow-luxury-soft space-y-4">
+        <div className="bg-white dark:bg-charcoal-900 rounded-3xl p-6 border border-neutral-200 dark:border-charcoal-800 shadow-luxury-soft space-y-5">
+          <div className="flex items-center justify-between pb-4 border-b border-neutral-100 dark:border-charcoal-800">
+            <span className="text-xs uppercase tracking-wider font-bold text-ink dark:text-white flex items-center gap-2">
+              <SlidersHorizontal className="w-4 h-4 text-amber-700 dark:text-accent" />
+              <span>Filters &amp; Criteria</span>
+            </span>
+
+            <div className="flex items-center gap-3">
+              <span className="text-xs text-neutral-600 dark:text-neutral-300 font-medium hidden sm:inline">
+                Showing <span className="font-bold text-amber-700 dark:text-accent">{filteredProperties.length}</span> Land Parcels
+              </span>
+              <button
+                type="button"
+                onClick={resetFilters}
+                className="text-xs text-amber-700 dark:text-accent font-bold hover:underline flex items-center gap-1 uppercase tracking-wider"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>Reset</span>
+              </button>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Search Input */}
-            <div className="relative">
-              <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search corridor, city, airport link..."
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-neutral dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:outline-none focus:ring-2 focus:ring-accent"
-              />
+            <div className="space-y-1.5">
+              <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
+                Search
+              </label>
+              <div className="relative">
+                <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search corridor, city, airport..."
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:outline-none focus:ring-2 focus:ring-accent"
+                />
+              </div>
             </div>
 
             {/* State / Corridor */}
-            <div>
+            <div className="space-y-1.5">
+              <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
+                Corridor / State
+              </label>
               <select
                 value={selectedState}
                 onChange={(e) => setSelectedState(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-neutral dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:outline-none focus:ring-2 focus:ring-accent cursor-pointer"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:outline-none focus:ring-2 focus:ring-accent cursor-pointer"
               >
                 <option value="All">All Corridors &amp; States</option>
                 <option value="Uttar Pradesh">Yamuna Expressway &amp; YEIDA (UP)</option>
@@ -153,11 +183,14 @@ export default function PlotsClient({ initialProperties }: PlotsClientProps) {
             </div>
 
             {/* Title Type */}
-            <div>
+            <div className="space-y-1.5">
+              <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
+                Title &amp; Mutation Structure
+              </label>
               <select
                 value={selectedTitleType}
                 onChange={(e) => setSelectedTitleType(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-neutral dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:outline-none focus:ring-2 focus:ring-accent cursor-pointer"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:outline-none focus:ring-2 focus:ring-accent cursor-pointer"
               >
                 <option value="All">All Title Types</option>
                 <option value="Freehold">Freehold Registry</option>
@@ -166,23 +199,28 @@ export default function PlotsClient({ initialProperties }: PlotsClientProps) {
             </div>
 
             {/* Reset / Actions */}
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={resetFilters}
-                className="flex-1 py-2.5 px-4 rounded-xl bg-neutral-100 dark:bg-charcoal-800 hover:bg-neutral-200 dark:hover:bg-charcoal-700 text-neutral-700 dark:text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>Reset</span>
-              </button>
+            <div className="space-y-1.5">
+              <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
+                Connect
+              </label>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={resetFilters}
+                  className="flex-1 py-2.5 px-4 rounded-xl bg-neutral-100 dark:bg-charcoal-800 hover:bg-neutral-200 dark:hover:bg-charcoal-700 text-neutral-700 dark:text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  <span>Reset</span>
+                </button>
 
-              <button
-                type="button"
-                onClick={() => setIsLeadModalOpen(true)}
-                className="py-2.5 px-4 rounded-xl bg-accent hover:bg-yellow-400 text-black font-bold text-xs uppercase tracking-wider transition-colors shrink-0 shadow-gold-glow"
-              >
-                Talk to Advisor
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setIsLeadModalOpen(true)}
+                  className="py-2.5 px-4 rounded-xl bg-accent hover:bg-yellow-400 text-black font-bold text-xs uppercase tracking-wider transition-colors shrink-0 shadow-gold-glow"
+                >
+                  Advisor
+                </button>
+              </div>
             </div>
           </div>
         </div>

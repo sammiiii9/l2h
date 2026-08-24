@@ -201,7 +201,7 @@ export default function ContactClient() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold text-ink dark:text-neutral-200 mb-1">
+                      <label className="block text-xs font-bold text-ink dark:text-white mb-1.5 uppercase tracking-wider">
                         Full Name *
                       </label>
                       <input
@@ -215,7 +215,7 @@ export default function ContactClient() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-ink dark:text-neutral-200 mb-1">
+                      <label className="block text-xs font-bold text-ink dark:text-white mb-1.5 uppercase tracking-wider">
                         Phone Number *
                       </label>
                       <input
@@ -231,7 +231,7 @@ export default function ContactClient() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold text-ink dark:text-neutral-200 mb-1">
+                      <label className="block text-xs font-bold text-ink dark:text-white mb-1.5 uppercase tracking-wider">
                         Email Address
                       </label>
                       <input
@@ -244,13 +244,13 @@ export default function ContactClient() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-ink dark:text-neutral-200 mb-1">
+                      <label className="block text-xs font-bold text-ink dark:text-white mb-1.5 uppercase tracking-wider">
                         Preferred Location
                       </label>
                       <select
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none cursor-pointer"
                       >
                         <option value="Sector 150 Noida">Sector 150 Noida</option>
                         <option value="Sector 124-128 Noida Expressway">Sector 124-128 Noida Expressway</option>
@@ -264,13 +264,13 @@ export default function ContactClient() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold text-ink dark:text-neutral-200 mb-1">
+                      <label className="block text-xs font-bold text-ink dark:text-white mb-1.5 uppercase tracking-wider">
                         Property Category
                       </label>
                       <select
                         value={formData.propertyType}
                         onChange={(e) => setFormData({ ...formData, propertyType: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none cursor-pointer"
                       >
                         <option value="Plots & Land — Pan India">Plots &amp; Land — Pan India</option>
                         <option value="Residential Apartments">Residential Apartments</option>
@@ -280,13 +280,13 @@ export default function ContactClient() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-ink dark:text-neutral-200 mb-1">
+                      <label className="block text-xs font-bold text-ink dark:text-white mb-1.5 uppercase tracking-wider">
                         Preferred Channel
                       </label>
                       <select
                         value={formData.preferredContactMethod}
                         onChange={(e) => setFormData({ ...formData, preferredContactMethod: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none cursor-pointer"
                       >
                         <option value="WhatsApp">WhatsApp (Instant Details)</option>
                         <option value="Phone">Phone Call</option>
@@ -296,7 +296,7 @@ export default function ContactClient() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-ink dark:text-neutral-200 mb-1">
+                    <label className="block text-xs font-bold text-ink dark:text-white mb-1.5 uppercase tracking-wider">
                       Message or Consultation Objective
                     </label>
                     <textarea

@@ -228,7 +228,7 @@ export default function PropertiesClient() {
 
             {/* Category Filter */}
             <div className="space-y-2">
-              <label className="block text-xs font-bold text-ink dark:text-neutral-200 uppercase tracking-wider">
+              <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
                 Primary Category
               </label>
               <select
@@ -248,7 +248,7 @@ export default function PropertiesClient() {
 
             {/* City */}
             <div className="space-y-2">
-              <label className="block text-xs font-bold text-ink dark:text-neutral-200 uppercase tracking-wider">
+              <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
                 City / Region
               </label>
               <select
@@ -257,7 +257,7 @@ export default function PropertiesClient() {
                   setCity(e.target.value);
                   updateQuery('city', e.target.value);
                 }}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none cursor-pointer"
               >
                 <option value="All">All Regions</option>
                 <option value="Noida">Noida</option>
@@ -274,7 +274,7 @@ export default function PropertiesClient() {
 
             {/* Locality */}
             <div className="space-y-2">
-              <label className="block text-xs font-bold text-ink dark:text-neutral-200 uppercase tracking-wider">
+              <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
                 Micro-Market / Locality
               </label>
               <select
@@ -283,7 +283,7 @@ export default function PropertiesClient() {
                   setLocality(e.target.value);
                   updateQuery('locality', e.target.value);
                 }}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none cursor-pointer"
               >
                 <option value="All">All Micro-Markets</option>
                 <option value="Sector 150">Sector 150 (Sports Corridor)</option>
@@ -303,7 +303,7 @@ export default function PropertiesClient() {
 
             {/* Bedrooms (BHK) */}
             <div className="space-y-2">
-              <label className="block text-xs font-bold text-ink dark:text-neutral-200 uppercase tracking-wider">
+              <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
                 Bedrooms / Configuration
               </label>
               <div className="grid grid-cols-4 gap-1.5">
@@ -323,7 +323,7 @@ export default function PropertiesClient() {
                     className={`py-2 text-xs font-semibold rounded-lg border transition-colors ${
                       bedrooms === b.val
                         ? 'bg-accent text-black font-bold border-accent shadow-sm'
-                        : 'bg-neutral-50 dark:bg-charcoal-800 text-neutral-700 dark:text-neutral-300 border-neutral-200 dark:border-charcoal-700 hover:bg-neutral-100 dark:hover:bg-charcoal-700'
+                        : 'bg-neutral-50 dark:bg-charcoal-800 text-neutral-700 dark:text-white border-neutral-200 dark:border-charcoal-700 hover:bg-neutral-100 dark:hover:bg-charcoal-700'
                     }`}
                   >
                     {b.label}
@@ -335,7 +335,7 @@ export default function PropertiesClient() {
             {/* Max Budget Slider */}
             <div className="space-y-2">
               <div className="flex justify-between text-xs font-bold">
-                <span className="text-ink dark:text-neutral-200 uppercase tracking-wider">Max Budget</span>
+                <span className="text-ink dark:text-white uppercase tracking-wider">Max Budget</span>
                 <span className="text-ink dark:text-white font-serif font-bold">{formatPrice(maxPrice)}</span>
               </div>
               <input
@@ -577,7 +577,7 @@ export default function PropertiesClient() {
 
               {/* City */}
               <div className="space-y-2">
-                <label className="block text-xs font-bold text-ink dark:text-neutral-200 uppercase tracking-wider">
+                <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
                   City / Region
                 </label>
                 <select
@@ -586,7 +586,7 @@ export default function PropertiesClient() {
                     setCity(e.target.value);
                     updateQuery('city', e.target.value);
                   }}
-                  className="w-full px-3.5 py-3 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none"
+                  className="w-full px-3.5 py-3 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none cursor-pointer"
                 >
                   <option value="All">All Regions</option>
                   <option value="Noida">Noida</option>
@@ -603,7 +603,7 @@ export default function PropertiesClient() {
 
               {/* Locality */}
               <div className="space-y-2">
-                <label className="block text-xs font-bold text-ink dark:text-neutral-200 uppercase tracking-wider">
+                <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
                   Micro-Market / Locality
                 </label>
                 <select
@@ -612,7 +612,7 @@ export default function PropertiesClient() {
                     setLocality(e.target.value);
                     updateQuery('locality', e.target.value);
                   }}
-                  className="w-full px-3.5 py-3 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none"
+                  className="w-full px-3.5 py-3 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none cursor-pointer"
                 >
                   <option value="All">All Localities</option>
                   <option value="Sector 150">Sector 150, Noida</option>
@@ -632,7 +632,7 @@ export default function PropertiesClient() {
 
               {/* Bedrooms */}
               <div className="space-y-2">
-                <label className="block text-xs font-bold text-ink dark:text-neutral-200 uppercase tracking-wider">
+                <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
                   Bedrooms
                 </label>
                 <div className="grid grid-cols-5 gap-2">
@@ -653,7 +653,7 @@ export default function PropertiesClient() {
                       className={`py-2.5 rounded-xl text-xs font-bold border transition-all ${
                         bedrooms === b.val
                           ? 'bg-accent text-black font-bold border-accent shadow-sm'
-                          : 'bg-neutral-50 dark:bg-charcoal-800 text-neutral-700 dark:text-neutral-300 border-neutral-200 dark:border-charcoal-700 hover:bg-neutral-100 dark:hover:bg-charcoal-700'
+                          : 'bg-neutral-50 dark:bg-charcoal-800 text-neutral-700 dark:text-white border-neutral-200 dark:border-charcoal-700 hover:bg-neutral-100 dark:hover:bg-charcoal-700'
                       }`}
                     >
                       {b.label}
@@ -665,7 +665,7 @@ export default function PropertiesClient() {
               {/* Max Budget Slider */}
               <div className="space-y-2">
                 <div className="flex justify-between text-xs font-bold">
-                  <span className="text-ink dark:text-neutral-200 uppercase tracking-wider">Max Budget</span>
+                  <span className="text-ink dark:text-white uppercase tracking-wider">Max Budget</span>
                   <span className="text-ink dark:text-white font-serif font-bold">{formatPrice(maxPrice)}</span>
                 </div>
                 <input
@@ -689,7 +689,7 @@ export default function PropertiesClient() {
 
               {/* Possession Status */}
               <div className="space-y-2">
-                <label className="block text-xs font-bold text-ink dark:text-neutral-200 uppercase tracking-wider">
+                <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
                   Possession Status
                 </label>
                 <select
@@ -698,7 +698,7 @@ export default function PropertiesClient() {
                     setPossession(e.target.value);
                     updateQuery('possession', e.target.value);
                   }}
-                  className="w-full px-3.5 py-3 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none"
+                  className="w-full px-3.5 py-3 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none cursor-pointer"
                 >
                   <option value="All">Any Status</option>
                   <option value="Ready to Move">Ready to Move</option>
