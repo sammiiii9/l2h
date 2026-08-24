@@ -149,12 +149,12 @@ export default async function LocationDetailPage({ params }: LocationDetailPageP
       <div className="bg-neutral dark:bg-black min-h-screen py-12">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           {/* Back Link & Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400 font-light">
-            <Link href="/" className="hover:text-ink dark:hover:text-white transition-colors">Home</Link>
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-neutral-700 dark:text-white font-medium">
+            <Link href="/" className="hover:text-amber-700 dark:hover:text-accent transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/locations" className="hover:text-ink dark:hover:text-white transition-colors">Corridors</Link>
+            <Link href="/locations" className="hover:text-amber-700 dark:hover:text-accent transition-colors">Corridors</Link>
             <span>/</span>
-            <span className="text-ink dark:text-white font-medium">{location.name}</span>
+            <span className="text-amber-700 dark:text-accent font-bold">{location.name}</span>
           </nav>
 
           {/* Hero Section — Real Photography */}
@@ -181,24 +181,24 @@ export default async function LocationDetailPage({ params }: LocationDetailPageP
                 {location.name}
               </h1>
 
-              <p className="text-neutral-300 text-sm sm:text-base leading-relaxed font-light">
+              <p className="text-white text-sm sm:text-base leading-relaxed font-normal">
                 {location.tagline}
               </p>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-charcoal-800">
                 <div className="space-y-1">
-                  <span className="text-[10px] text-neutral-400 uppercase tracking-wider font-semibold">Valuation Benchmark</span>
+                  <span className="text-[10px] text-neutral-300 uppercase tracking-wider font-bold">Valuation Benchmark</span>
                   <div className="text-lg sm:text-xl font-serif font-bold text-white">{location.avgPricePerSqFt}</div>
                 </div>
 
                 <div className="space-y-1">
-                  <span className="text-[10px] text-neutral-400 uppercase tracking-wider font-semibold">YoY Price Velocity</span>
+                  <span className="text-[10px] text-neutral-300 uppercase tracking-wider font-bold">YoY Price Velocity</span>
                   <div className="text-lg sm:text-xl font-serif font-bold text-accent">{location.growthRateYoY}</div>
                 </div>
 
                 <div className="space-y-1 col-span-2 sm:col-span-1">
-                  <span className="text-[10px] text-neutral-400 uppercase tracking-wider font-semibold">Typical Ticket Range</span>
-                  <div className="text-lg sm:text-xl font-serif font-bold text-neutral-200">{location.priceRange}</div>
+                  <span className="text-[10px] text-neutral-300 uppercase tracking-wider font-bold">Typical Ticket Range</span>
+                  <div className="text-lg sm:text-xl font-serif font-bold text-white">{location.priceRange}</div>
                 </div>
               </div>
             </div>
@@ -206,12 +206,12 @@ export default async function LocationDetailPage({ params }: LocationDetailPageP
 
           {/* Narrative-First Executive Briefing Box */}
           <div className="bg-white dark:bg-charcoal-900 rounded-3xl p-6 sm:p-8 border border-neutral-200 dark:border-charcoal-800 shadow-luxury-soft space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-neutral dark:bg-charcoal-800 text-ink dark:text-neutral-200 text-[11px] font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-neutral dark:bg-charcoal-800 text-ink dark:text-white text-[11px] font-bold uppercase tracking-wider">
               <Compass className="w-3.5 h-3.5 text-accent" />
               <span>Corridor Character &amp; Trajectory Brief</span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2 text-xs sm:text-sm text-neutral-800 dark:text-neutral-100 font-normal">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2 text-xs sm:text-sm text-neutral-800 dark:text-white font-normal">
               <div className="space-y-1.5 p-4 rounded-2xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700">
                 <strong className="text-ink dark:text-white font-serif font-semibold block text-sm">Target Buyer Profile</strong>
                 <span>Best suited for long-term luxury home seekers, IT GCC executives, and high-appreciation land investors.</span>
@@ -233,7 +233,7 @@ export default async function LocationDetailPage({ params }: LocationDetailPageP
               <h2 className="text-2xl font-serif font-bold text-ink dark:text-white">
                 Corridor Macro Analysis &amp; Urban Masterplan
               </h2>
-              <p className="text-neutral-800 dark:text-neutral-100 text-sm sm:text-base leading-relaxed font-normal">
+              <p className="text-neutral-800 dark:text-white text-sm sm:text-base leading-relaxed font-normal">
                 {location.overview}
               </p>
 
@@ -255,7 +255,7 @@ export default async function LocationDetailPage({ params }: LocationDetailPageP
                 <h3 className="text-lg font-serif font-bold text-ink dark:text-white">
                   Strategic Investment Outlook &amp; Risk Considerations
                 </h3>
-                <p className="text-neutral-800 dark:text-neutral-200 text-xs sm:text-sm leading-relaxed font-light bg-neutral dark:bg-charcoal-800 p-5 rounded-2xl border border-neutral-200 dark:border-charcoal-700">
+                <p className="text-neutral-800 dark:text-white text-xs sm:text-sm leading-relaxed font-normal bg-neutral dark:bg-charcoal-800 p-5 rounded-2xl border border-neutral-200 dark:border-charcoal-700">
                   {location.investmentOutlook}
                 </p>
               </div>
@@ -266,11 +266,11 @@ export default async function LocationDetailPage({ params }: LocationDetailPageP
                 <span className="text-xs uppercase tracking-wider font-bold text-ink dark:text-white">
                   Transit &amp; Expressways
                 </span>
-                <ul className="space-y-3 text-xs text-neutral-700 dark:text-neutral-300">
+                <ul className="space-y-3 text-xs text-neutral-700 dark:text-white font-normal">
                   {location.connectivityHighlights.map((conn, idx) => (
                     <li key={idx} className="flex items-start gap-2.5">
                       <CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />
-                      <span className="leading-relaxed font-light">{conn}</span>
+                      <span className="leading-relaxed font-normal">{conn}</span>
                     </li>
                   ))}
                 </ul>
@@ -280,11 +280,11 @@ export default async function LocationDetailPage({ params }: LocationDetailPageP
                 <span className="text-xs uppercase tracking-wider font-bold text-ink dark:text-white">
                   Social &amp; Lifestyle Infrastructure
                 </span>
-                <ul className="space-y-3 text-xs text-neutral-700 dark:text-neutral-300">
+                <ul className="space-y-3 text-xs text-neutral-700 dark:text-white font-normal">
                   {location.lifestyleAndSocialInfra.map((soc, idx) => (
                     <li key={idx} className="flex items-start gap-2.5">
                       <CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />
-                      <span className="leading-relaxed font-light">{soc}</span>
+                      <span className="leading-relaxed font-normal">{soc}</span>
                     </li>
                   ))}
                 </ul>
@@ -297,7 +297,7 @@ export default async function LocationDetailPage({ params }: LocationDetailPageP
             <div className="space-y-6 pt-6">
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div>
-                  <span className="text-xs uppercase tracking-wider text-neutral-500 font-bold">
+                  <span className="text-xs uppercase tracking-wider text-amber-700 dark:text-accent font-bold">
                     Verified Inventory
                   </span>
                   <h3 className="text-2xl sm:text-3xl font-serif font-bold text-ink dark:text-white">
@@ -307,7 +307,7 @@ export default async function LocationDetailPage({ params }: LocationDetailPageP
 
                 <Link
                   href={`/properties?search=${encodeURIComponent(location.city)}`}
-                  className="text-xs font-bold text-accent hover:underline flex items-center gap-1 uppercase tracking-wider"
+                  className="text-xs font-bold text-amber-700 dark:text-accent hover:underline flex items-center gap-1 uppercase tracking-wider"
                 >
                   <span>Explore All in {location.city}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -334,7 +334,7 @@ export default async function LocationDetailPage({ params }: LocationDetailPageP
                 {location.faqs.map((faq, fIdx) => (
                   <div key={fIdx} className="py-4 space-y-1.5">
                     <h4 className="font-serif font-bold text-ink dark:text-white text-base">{faq.question}</h4>
-                    <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">{faq.answer}</p>
+                    <p className="text-xs sm:text-sm text-neutral-700 dark:text-white font-normal leading-relaxed">{faq.answer}</p>
                   </div>
                 ))}
               </div>

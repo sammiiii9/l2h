@@ -151,7 +151,7 @@ export default function PropertiesClient() {
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-ink dark:text-white">
               {pageTitle}
             </h1>
-            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-700 dark:text-white font-normal leading-relaxed">
               {pageSubtitle}
             </p>
           </div>
@@ -186,7 +186,7 @@ export default function PropertiesClient() {
         {/* Category Evidence Rail */}
         <div className="bg-white dark:bg-charcoal-900 rounded-2xl p-4 sm:p-5 border border-neutral-200 dark:border-charcoal-800 shadow-luxury-soft flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="space-y-0.5">
-            <span className="text-[10px] uppercase tracking-wider font-bold text-neutral-500 dark:text-neutral-400 block">
+            <span className="text-[10px] uppercase tracking-wider font-bold text-amber-700 dark:text-accent block">
               Primary Advisory Question to Test:
             </span>
             <p className="text-xs sm:text-sm font-serif italic text-ink dark:text-white font-medium">
@@ -198,7 +198,7 @@ export default function PropertiesClient() {
             <span className="text-[10px] uppercase tracking-wider font-bold text-amber-700 dark:text-accent block">
               Evidence Emphasis:
             </span>
-            <p className="text-xs text-neutral-600 dark:text-neutral-400 font-light">
+            <p className="text-xs text-neutral-700 dark:text-white font-medium">
               {evidenceFocus}
             </p>
           </div>
@@ -351,7 +351,7 @@ export default function PropertiesClient() {
                 }}
                 className="w-full h-1.5 bg-neutral-200 dark:bg-charcoal-700 rounded-lg appearance-none cursor-pointer accent-accent"
               />
-              <div className="flex justify-between text-[10px] text-neutral-500 dark:text-neutral-400 font-medium">
+              <div className="flex justify-between text-[10px] text-neutral-700 dark:text-white font-medium">
                 <span>₹1 Cr</span>
                 <span>₹35+ Cr</span>
               </div>
@@ -359,7 +359,7 @@ export default function PropertiesClient() {
 
             {/* Possession Status */}
             <div className="space-y-2">
-              <label className="block text-xs font-bold text-ink dark:text-neutral-200 uppercase tracking-wider">
+              <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
                 Possession Status
               </label>
               <select
@@ -392,7 +392,7 @@ export default function PropertiesClient() {
                   <span>Filters</span>
                 </button>
 
-                <div className="text-xs font-bold text-ink dark:text-neutral-200">
+                <div className="text-xs font-bold text-ink dark:text-white">
                   Showing <span className="text-amber-700 dark:text-accent underline font-extrabold">{properties.length}</span> Curated Properties
                 </div>
               </div>
@@ -400,7 +400,7 @@ export default function PropertiesClient() {
               <div className="flex items-center gap-3">
                 {/* Sort By Dropdown */}
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="text-neutral-500 dark:text-neutral-400 hidden sm:inline">Sort by:</span>
+                  <span className="text-neutral-700 dark:text-white font-medium hidden sm:inline">Sort by:</span>
                   <select
                     value={sortBy}
                     onChange={(e) => {
@@ -422,7 +422,7 @@ export default function PropertiesClient() {
                   <button
                     type="button"
                     onClick={() => setLayout('grid')}
-                    className={`p-1.5 rounded ${layout === 'grid' ? 'bg-black dark:bg-charcoal-700 text-white shadow-sm' : 'text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white'}`}
+                    className={`p-1.5 rounded ${layout === 'grid' ? 'bg-black dark:bg-charcoal-700 text-white shadow-sm' : 'text-neutral-600 dark:text-white hover:text-black dark:hover:text-accent'}`}
                     aria-label="Grid View"
                   >
                     <LayoutGrid className="w-4 h-4" />
@@ -430,7 +430,7 @@ export default function PropertiesClient() {
                   <button
                     type="button"
                     onClick={() => setLayout('list')}
-                    className={`p-1.5 rounded ${layout === 'list' ? 'bg-black dark:bg-charcoal-700 text-white shadow-sm' : 'text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white'}`}
+                    className={`p-1.5 rounded ${layout === 'list' ? 'bg-black dark:bg-charcoal-700 text-white shadow-sm' : 'text-neutral-600 dark:text-white hover:text-black dark:hover:text-accent'}`}
                     aria-label="List View"
                   >
                     <List className="w-4 h-4" />
@@ -442,7 +442,7 @@ export default function PropertiesClient() {
             {/* Active Filter Badges */}
             {hasActiveFilters && (
               <div className="flex flex-wrap items-center gap-2 text-xs">
-                <span className="text-neutral-500 dark:text-neutral-400">Active Filters:</span>
+                <span className="text-neutral-700 dark:text-white font-medium">Active Filters:</span>
                 {category !== 'All' && (
                   <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 dark:bg-charcoal-800 text-ink dark:text-neutral-200 font-semibold border border-neutral-200 dark:border-charcoal-700">
                     Category: {category}
@@ -503,7 +503,7 @@ export default function PropertiesClient() {
               <div className="text-center py-24 bg-white dark:bg-charcoal-900 rounded-3xl border border-neutral-200 dark:border-charcoal-800 p-8 space-y-4">
                 <Building2 className="w-12 h-12 text-neutral-400 dark:text-neutral-600 mx-auto" />
                 <h3 className="text-lg font-serif font-bold text-ink dark:text-white">No Matching Properties Found</h3>
-                <p className="text-xs text-neutral-600 dark:text-neutral-400 max-w-sm mx-auto font-light">
+                <p className="text-xs text-neutral-700 dark:text-white max-w-sm mx-auto font-normal">
                   Try adjusting your budget slider, selecting another corridor, or contact an advisor for off-market inventory.
                 </p>
                 <button
@@ -681,7 +681,7 @@ export default function PropertiesClient() {
                   }}
                   className="w-full h-2 bg-neutral-200 dark:bg-charcoal-700 rounded-lg appearance-none cursor-pointer accent-accent"
                 />
-                <div className="flex justify-between text-[10px] text-neutral-500 dark:text-neutral-400 font-medium">
+                <div className="flex justify-between text-[10px] text-neutral-700 dark:text-white font-bold">
                   <span>₹1 Cr</span>
                   <span>₹35+ Cr</span>
                 </div>

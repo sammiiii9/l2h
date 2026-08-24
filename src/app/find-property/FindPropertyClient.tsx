@@ -244,7 +244,7 @@ export default function FindPropertyClient() {
                   <h3 className="text-2xl font-serif font-bold text-ink dark:text-white">
                     What type of property are you looking for?
                   </h3>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400 font-light">
+                  <p className="text-xs text-neutral-700 dark:text-white font-normal">
                     Select your primary category of interest.
                   </p>
                 </div>
@@ -273,7 +273,7 @@ export default function FindPropertyClient() {
                         </div>
                         <div>
                           <div className="text-sm font-bold font-serif">{item.title}</div>
-                          <div className={`text-[11px] mt-0.5 ${isSelected ? 'text-black/80' : 'text-neutral-500 dark:text-neutral-400'}`}>{item.desc}</div>
+                          <div className={`text-[11px] mt-0.5 ${isSelected ? 'text-black/80 font-semibold' : 'text-neutral-700 dark:text-white'}`}>{item.desc}</div>
                         </div>
                       </button>
                     );
@@ -289,7 +289,7 @@ export default function FindPropertyClient() {
                   <h3 className="text-2xl font-serif font-bold text-ink dark:text-white">
                     Which micro-market or corridor do you prefer?
                   </h3>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400 font-light">
+                  <p className="text-xs text-neutral-700 dark:text-white font-normal">
                     Select your preferred region in Delhi NCR.
                   </p>
                 </div>
@@ -333,7 +333,7 @@ export default function FindPropertyClient() {
                   <h3 className="text-2xl font-serif font-bold text-ink dark:text-white">
                     What is your approximate budget range?
                   </h3>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400 font-light">
+                  <p className="text-xs text-neutral-700 dark:text-white font-normal">
                     We only recommend options strictly within your defined allocation.
                   </p>
                 </div>
@@ -371,7 +371,7 @@ export default function FindPropertyClient() {
                   <h3 className="text-2xl font-serif font-bold text-ink dark:text-white">
                     What is your purchase timeline?
                   </h3>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400 font-light">
+                  <p className="text-xs text-neutral-700 dark:text-white font-normal">
                     Helps us prioritize ready-to-move vs. under-construction payment plans.
                   </p>
                 </div>
@@ -394,7 +394,7 @@ export default function FindPropertyClient() {
                       }`}
                     >
                       <div className="text-xs font-bold font-serif">{t.label}</div>
-                      <div className={`text-[11px] mt-0.5 ${timeline === t.id ? 'text-black/80' : 'text-neutral-500 dark:text-neutral-400'}`}>{t.desc}</div>
+                      <div className={`text-[11px] mt-0.5 ${timeline === t.id ? 'text-black/80 font-semibold' : 'text-neutral-700 dark:text-white'}`}>{t.desc}</div>
                     </button>
                   ))}
                 </div>
@@ -408,7 +408,7 @@ export default function FindPropertyClient() {
                   <h3 className="text-2xl font-serif font-bold text-ink dark:text-white">
                     What is the primary objective of this purchase?
                   </h3>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400 font-light">
+                  <p className="text-xs text-neutral-700 dark:text-white font-normal">
                     We tailor our due diligence around your financial goal.
                   </p>
                 </div>
@@ -431,7 +431,7 @@ export default function FindPropertyClient() {
                       }`}
                     >
                       <div className="text-xs font-bold font-serif">{p.title}</div>
-                      <div className={`text-[11px] mt-0.5 ${purpose === p.id ? 'text-black/80' : 'text-neutral-500 dark:text-neutral-400'}`}>{p.desc}</div>
+                      <div className={`text-[11px] mt-0.5 ${purpose === p.id ? 'text-black/80 font-semibold' : 'text-neutral-700 dark:text-white'}`}>{p.desc}</div>
                     </button>
                   ))}
                 </div>
@@ -445,7 +445,7 @@ export default function FindPropertyClient() {
                   <h3 className="text-2xl font-serif font-bold text-ink dark:text-white">
                     Where should we share your curated shortlist?
                   </h3>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400 font-light">
+                  <p className="text-xs text-neutral-700 dark:text-white font-normal">
                     A senior advisor will prepare your tailored report.
                   </p>
                 </div>

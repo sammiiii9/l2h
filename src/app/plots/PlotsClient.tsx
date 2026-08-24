@@ -8,8 +8,9 @@ import {
   RotateCcw, 
   ShieldCheck, 
   MapPin, 
+  FileCheck, 
   Compass, 
-  FileCheck
+  CheckCircle2 
 } from 'lucide-react';
 import { Property } from '@/types';
 import PropertyCard from '@/components/properties/PropertyCard';
@@ -24,7 +25,6 @@ export default function PlotsClient({ initialProperties }: PlotsClientProps) {
   const [search, setSearch] = useState('');
   const [selectedState, setSelectedState] = useState('All');
   const [selectedTitleType, setSelectedTitleType] = useState('All');
-  const [maxPrice, setMaxPrice] = useState(150000000);
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
 
   // Filter properties for plots only
@@ -44,44 +44,41 @@ export default function PlotsClient({ initialProperties }: PlotsClientProps) {
           p.title.toLowerCase().includes(query) ||
           p.location.locality.toLowerCase().includes(query) ||
           p.location.city.toLowerCase().includes(query) ||
-          (p.nearestInfra && p.nearestInfra.toLowerCase().includes(query));
+          (p.developer?.name && p.developer.name.toLowerCase().includes(query));
         if (!matches) return false;
       }
 
       if (selectedState !== 'All') {
-        if (p.location.state !== selectedState && !p.location.city.includes(selectedState)) {
+        if (!p.location.state?.toLowerCase().includes(selectedState.toLowerCase()) && !p.location.city.toLowerCase().includes(selectedState.toLowerCase())) {
           return false;
         }
       }
 
       if (selectedTitleType !== 'All') {
-        if ((p.titleType || 'Freehold') !== selectedTitleType) {
+        if (p.titleType !== selectedTitleType) {
           return false;
         }
       }
 
-      if (p.price > maxPrice) return false;
-
       return true;
     });
-  }, [plots, search, selectedState, selectedTitleType, maxPrice]);
+  }, [plots, search, selectedState, selectedTitleType]);
 
   const resetFilters = () => {
     setSearch('');
     setSelectedState('All');
     setSelectedTitleType('All');
-    setMaxPrice(150000000);
   };
 
   return (
     <div className="bg-neutral dark:bg-black min-h-screen py-10">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
-        {/* Category Hero Banner — Real Land/Estate Photography */}
+        {/* Category Hero Banner — Real Land/Plot Architecture Photography */}
         <div className="relative rounded-3xl overflow-hidden bg-black text-white min-h-[380px] sm:min-h-[460px] flex items-center shadow-2xl">
           <Image
             src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=85"
-            alt="Plots and Land Advisory Across India"
+            alt="Plots & Land Pan-India Development"
             fill
             priority
             sizes="100vw"
@@ -99,12 +96,12 @@ export default function PlotsClient({ initialProperties }: PlotsClientProps) {
               Plots &amp; Clear-Title Land Parcels
             </h1>
 
-            <p className="text-neutral-300 text-sm sm:text-base font-light leading-relaxed">
+            <p className="text-white text-sm sm:text-base font-normal leading-relaxed">
               &ldquo;Research-led plot opportunities across India, with location, title, approval, and exit considerations made visible.&rdquo;
             </p>
 
             {/* Diligence Matrix Strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-charcoal-800 text-xs text-neutral-300 font-light">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-charcoal-800 text-xs text-white font-normal">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-accent shrink-0" />
                 <span>30-Year Title Scrutiny</span>
@@ -173,7 +170,7 @@ export default function PlotsClient({ initialProperties }: PlotsClientProps) {
               <button
                 type="button"
                 onClick={resetFilters}
-                className="flex-1 py-2.5 px-4 rounded-xl bg-neutral-100 dark:bg-charcoal-800 hover:bg-neutral-200 dark:hover:bg-charcoal-700 text-neutral-700 dark:text-neutral-300 font-semibold text-xs transition-colors flex items-center justify-center gap-1.5"
+                className="flex-1 py-2.5 px-4 rounded-xl bg-neutral-100 dark:bg-charcoal-800 hover:bg-neutral-200 dark:hover:bg-charcoal-700 text-neutral-700 dark:text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Reset</span>
@@ -213,7 +210,7 @@ export default function PlotsClient({ initialProperties }: PlotsClientProps) {
               <h3 className="text-lg font-serif font-bold text-ink dark:text-white">
                 No Land Parcels Match Your Selection
               </h3>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 max-w-sm mx-auto font-light">
+              <p className="text-xs text-neutral-700 dark:text-white max-w-sm mx-auto font-normal">
                 Try resetting your filters or speak directly with our land advisory desk for off-market registry parcels.
               </p>
               <button

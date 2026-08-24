@@ -87,7 +87,7 @@ export default function LocationsPage() {
             <h1 className="text-3xl sm:text-5xl font-serif font-bold text-ink dark:text-white tracking-tight">
               Strategic Corridors &amp; Investment Hubs
             </h1>
-            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-700 dark:text-white font-normal leading-relaxed">
               Unbiased research, price velocity indexes, connectivity matrices, and verified inventory across high-growth corridors in Delhi NCR, Goa, Uttarakhand, and Gujarat.
             </p>
           </div>
@@ -117,24 +117,24 @@ export default function LocationsPage() {
 
                   <div className="p-6 space-y-4">
                     <div className="flex items-center justify-between text-xs py-2 border-b border-neutral-100 dark:border-charcoal-800">
-                      <span className="text-neutral-500 dark:text-neutral-400 font-medium">Price Range:</span>
+                      <span className="text-neutral-700 dark:text-white font-medium">Price Range:</span>
                       <span className="font-serif font-bold text-ink dark:text-white">{loc.priceRange}</span>
                     </div>
 
                     <div className="flex items-center justify-between text-xs py-2 border-b border-neutral-100 dark:border-charcoal-800">
-                      <span className="text-neutral-500 dark:text-neutral-400 font-medium">YoY Appreciation:</span>
+                      <span className="text-neutral-700 dark:text-white font-medium">YoY Appreciation:</span>
                       <span className="font-bold text-emerald-600 dark:text-emerald-400">+{loc.growthRateYoY}</span>
                     </div>
 
-                    <p className="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed font-light line-clamp-3">
+                    <p className="text-xs text-neutral-700 dark:text-white leading-relaxed font-normal line-clamp-3">
                       {loc.overview}
                     </p>
 
                     <div className="pt-2">
-                      <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-bold uppercase tracking-wider block mb-1">Key Micro-Markets:</span>
+                      <span className="text-[10px] text-amber-700 dark:text-accent font-bold uppercase tracking-wider block mb-1">Key Micro-Markets:</span>
                       <div className="flex flex-wrap gap-1.5">
                         {loc.popularMicroMarkets.slice(0, 3).map((m, mIdx) => (
-                          <span key={mIdx} className="px-2 py-0.5 rounded-md bg-neutral-100 dark:bg-charcoal-800 text-[10px] font-medium text-ink dark:text-neutral-300 border border-neutral-200 dark:border-charcoal-700">
+                          <span key={mIdx} className="px-2 py-0.5 rounded-md bg-neutral-100 dark:bg-charcoal-800 text-[10px] font-medium text-ink dark:text-white border border-neutral-200 dark:border-charcoal-700">
                             {m}
                           </span>
                         ))}

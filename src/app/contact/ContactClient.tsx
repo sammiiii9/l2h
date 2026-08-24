@@ -81,7 +81,7 @@ export default function ContactClient() {
           <h1 className="text-3xl sm:text-5xl font-serif font-bold text-ink dark:text-white tracking-tight">
             Connect with a Property Advisor
           </h1>
-          <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed font-light">
+          <p className="text-neutral-700 dark:text-white text-sm sm:text-base leading-relaxed font-normal">
             Schedule an in-person meeting at our executive suites or arrange an escorted VIP site inspection in Noida or Gurgaon.
           </p>
         </div>
@@ -93,7 +93,7 @@ export default function ContactClient() {
             {/* Corporate Office Card */}
             <div className="bg-white dark:bg-charcoal-900 rounded-3xl p-8 border border-neutral-200 dark:border-charcoal-800 shadow-luxury-soft space-y-6">
               <div className="space-y-1">
-                <span className="text-xs uppercase tracking-widest text-amber-700 dark:text-accent font-semibold">
+                <span className="text-xs uppercase tracking-widest text-amber-700 dark:text-accent font-bold">
                   Corporate Headquarters
                 </span>
                 <h3 className="text-2xl font-serif font-bold text-ink dark:text-white">
@@ -101,10 +101,10 @@ export default function ContactClient() {
                 </h3>
               </div>
 
-              <div className="space-y-4 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
+              <div className="space-y-4 text-xs sm:text-sm text-neutral-700 dark:text-white font-normal">
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-amber-700 dark:text-accent shrink-0 mt-0.5" />
-                  <p className="leading-relaxed font-light">
+                  <p className="leading-relaxed font-normal">
                     Tower B, 14th Floor, Advant Navis Business Park, Sector 142, Noida Expressway, Delhi NCR - 201305
                   </p>
                 </div>
@@ -123,9 +123,9 @@ export default function ContactClient() {
                   </a>
                 </div>
 
-                <div className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400">
+                <div className="flex items-center gap-3 text-neutral-700 dark:text-white font-normal">
                   <Clock className="w-4 h-4 text-amber-700 dark:text-accent shrink-0" />
-                  <span className="font-light">Monday – Sunday: 9:30 AM – 8:00 PM</span>
+                  <span className="font-normal">Monday – Sunday: 9:30 AM – 8:00 PM</span>
                 </div>
               </div>
 
@@ -144,13 +144,13 @@ export default function ContactClient() {
 
             {/* Gurgaon Branch Office Card */}
             <div className="bg-white dark:bg-charcoal-900 rounded-3xl p-6 border border-neutral-200 dark:border-charcoal-800 shadow-luxury-soft space-y-3">
-              <span className="text-[11px] uppercase tracking-wider font-bold text-neutral-500 dark:text-neutral-400">
+              <span className="text-[11px] uppercase tracking-wider font-bold text-amber-700 dark:text-accent">
                 Gurgaon Advisory Desk
               </span>
               <h4 className="text-lg font-serif font-bold text-ink dark:text-white">
                 Golf Course Road Executive Suite
               </h4>
-              <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
+              <p className="text-xs text-neutral-700 dark:text-white leading-relaxed font-normal">
                 Two Horizon Centre, Golf Course Road, DLF Phase 5, Gurgaon, Haryana - 122002
               </p>
             </div>
@@ -169,7 +169,7 @@ export default function ContactClient() {
                 <p className="text-xs font-mono font-bold text-amber-700 dark:text-accent uppercase tracking-widest">
                   Reference: {referenceId}
                 </p>
-                <p className="text-sm text-neutral-600 dark:text-neutral-300 max-w-md mx-auto leading-relaxed font-light">
+                <p className="text-sm text-neutral-700 dark:text-white max-w-md mx-auto leading-relaxed font-normal">
                   Thank you for reaching out. A dedicated L2H property advisor will connect with you via {formData.preferredContactMethod} to confirm your appointment.
                 </p>
                 <div className="pt-4">
@@ -187,7 +187,7 @@ export default function ContactClient() {
                   <h3 className="text-2xl font-serif font-bold text-ink dark:text-white">
                     Schedule an Advisory Session
                   </h3>
-                  <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1 font-light">
+                  <p className="text-xs text-neutral-700 dark:text-white mt-1 font-normal">
                     Fill in your preferences below. An advisor will contact you strictly on your preferred schedule.
                   </p>
                 </div>

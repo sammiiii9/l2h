@@ -40,7 +40,7 @@ export default function MobileNav() {
               className={`flex flex-col items-center justify-center gap-1 py-1.5 px-3 rounded-xl transition-all relative min-w-[56px] ${
                 isActive 
                   ? 'text-ink dark:text-white font-bold bg-neutral-100 dark:bg-charcoal-800' 
-                  : 'text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white'
+                  : 'text-neutral-700 dark:text-white font-medium hover:text-amber-700 dark:hover:text-accent'
               }`}
             >
               <Icon className={`w-4 h-4 ${isActive ? 'text-amber-700 dark:text-accent' : ''}`} />

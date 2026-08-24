@@ -551,15 +551,15 @@ export default function PropertyDetailClient({ property, similarProperties }: Pr
 
           {/* Right Sidebar: Sticky Advisory Box */}
           <div className="lg:col-span-4 space-y-6 sticky top-24">
-            <div className="bg-white rounded-3xl p-6 sm:p-7 border border-zinc-200 shadow-sm space-y-6">
+            <div className="bg-white dark:bg-charcoal-900 rounded-3xl p-6 sm:p-7 border border-neutral-200 dark:border-charcoal-800 shadow-luxury-soft space-y-6">
               <div className="space-y-1">
-                <span className="text-xs uppercase tracking-wider text-zinc-500 font-bold">
+                <span className="text-xs uppercase tracking-wider text-amber-700 dark:text-accent font-bold">
                   Dedicated Advisory Desk
                 </span>
-                <h3 className="text-xl font-serif font-bold text-zinc-950">
+                <h3 className="text-xl font-serif font-bold text-ink dark:text-white">
                   Speak with an L2H Strategist
                 </h3>
-                <p className="text-xs text-zinc-500 leading-relaxed font-light">
+                <p className="text-xs text-neutral-700 dark:text-white leading-relaxed font-normal">
                   We look beyond the marketing brochure. Get unbiased developer due diligence, floor plan efficiency metrics, and private escorted site visits.
                 </p>
               </div>
@@ -580,7 +580,7 @@ export default function PropertyDetailClient({ property, similarProperties }: Pr
                     <div className="text-xs font-bold text-ink dark:text-white truncate">
                       {property.advisorContact.name}
                     </div>
-                    <div className="text-[10px] text-neutral-500 dark:text-neutral-400 truncate">
+                    <div className="text-[10px] text-neutral-700 dark:text-white truncate font-medium">
                       {property.advisorContact.role}
                     </div>
                     <div className="text-[10px] text-accent font-semibold flex items-center gap-1">

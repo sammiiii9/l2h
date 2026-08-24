@@ -104,7 +104,7 @@ export default function ResidentialClient({ initialProperties }: ResidentialClie
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80" />
 
           <div className="relative z-10 max-w-3xl p-8 sm:p-14 space-y-5">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-charcoal-800 border border-charcoal-700 text-neutral-200 text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-charcoal-800 border border-charcoal-700 text-white text-xs font-bold uppercase tracking-wider">
               <Home className="w-3.5 h-3.5 text-accent" />
               <span>Category Focus • Noida, NCR, Gurgaon &amp; Metros</span>
             </div>
@@ -113,12 +113,12 @@ export default function ResidentialClient({ initialProperties }: ResidentialClie
               Residential Apartments &amp; Family Estates
             </h1>
 
-            <p className="text-neutral-300 text-sm sm:text-base font-light leading-relaxed">
+            <p className="text-white text-sm sm:text-base font-normal leading-relaxed">
               &ldquo;Apartments framed around daily life, connectivity, builder context, ownership fit, and current availability.&rdquo;
             </p>
 
             {/* Proof & Diligence Strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-charcoal-800 text-xs text-neutral-300 font-light">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-charcoal-800 text-xs text-white font-normal">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-accent shrink-0" />
                 <span>Verified Builder Cost Sheets</span>
@@ -203,7 +203,7 @@ export default function ResidentialClient({ initialProperties }: ResidentialClie
               <button
                 type="button"
                 onClick={resetFilters}
-                className="flex-1 py-2.5 px-3 rounded-xl bg-neutral-100 dark:bg-charcoal-800 hover:bg-neutral-200 dark:hover:bg-charcoal-700 text-neutral-700 dark:text-neutral-300 font-semibold text-xs transition-colors flex items-center justify-center gap-1"
+                className="flex-1 py-2.5 px-3 rounded-xl bg-neutral-100 dark:bg-charcoal-800 hover:bg-neutral-200 dark:hover:bg-charcoal-700 text-neutral-700 dark:text-white font-bold text-xs transition-colors flex items-center justify-center gap-1"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Reset</span>
@@ -243,7 +243,7 @@ export default function ResidentialClient({ initialProperties }: ResidentialClie
               <h3 className="text-lg font-serif font-bold text-ink dark:text-white">
                 No Apartments Match Your Criteria
               </h3>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 max-w-sm mx-auto font-light">
+              <p className="text-xs text-neutral-700 dark:text-white max-w-sm mx-auto font-normal">
                 Try resetting your filters or request a bespoke residential search from an L2H property strategist.
               </p>
               <button

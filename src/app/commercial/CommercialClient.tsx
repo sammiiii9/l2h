@@ -6,10 +6,11 @@ import {
   Building2, 
   Search, 
   RotateCcw, 
-  TrendingUp, 
   Users, 
   Clock, 
-  FileSpreadsheet
+  TrendingUp, 
+  FileSpreadsheet, 
+  CheckCircle2 
 } from 'lucide-react';
 import { Property } from '@/types';
 import PropertyCard from '@/components/properties/PropertyCard';
@@ -25,7 +26,6 @@ export default function CommercialClient({ initialProperties }: CommercialClient
   const [selectedCity, setSelectedCity] = useState('All');
   const [selectedType, setSelectedType] = useState('All');
   const [selectedLease, setSelectedLease] = useState('All');
-  const [minYield, setMinYield] = useState(6);
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
 
   // Filter properties for commercial only
@@ -33,7 +33,7 @@ export default function CommercialClient({ initialProperties }: CommercialClient
     return initialProperties.filter(p => {
       const catLower = (p.category || '').toLowerCase();
       const typeLower = (p.propertyType || '').toLowerCase();
-      return catLower === 'commercial' || catLower === 'investments' || typeLower === 'office' || typeLower === 'retail';
+      return catLower === 'commercial' || typeLower === 'office' || typeLower === 'retail';
     });
   }, [initialProperties]);
 
@@ -45,7 +45,7 @@ export default function CommercialClient({ initialProperties }: CommercialClient
           p.title.toLowerCase().includes(query) ||
           p.location.locality.toLowerCase().includes(query) ||
           p.location.city.toLowerCase().includes(query) ||
-          (p.tenantName && p.tenantName.toLowerCase().includes(query));
+          (p.developer?.name && p.developer.name.toLowerCase().includes(query));
         if (!matches) return false;
       }
 
@@ -56,41 +56,39 @@ export default function CommercialClient({ initialProperties }: CommercialClient
       }
 
       if (selectedType !== 'All') {
-        if (p.propertyType.toLowerCase() !== selectedType.toLowerCase()) {
+        if (!p.propertyType.toLowerCase().includes(selectedType.toLowerCase())) {
           return false;
         }
       }
 
       if (selectedLease !== 'All') {
-        if ((p.leaseStatus || 'Pre-leased') !== selectedLease) {
-          return false;
+        if (selectedLease === 'Pre-leased') {
+          if (!p.leaseStatus?.toLowerCase().includes('pre-leased') && !p.leaseStatus?.toLowerCase().includes('leased')) {
+            return false;
+          }
         }
       }
 
-      const propYield = p.expectedRentalYieldPct || p.investmentView?.estimatedRentalYieldPercent || 7.5;
-      if (propYield < minYield) return false;
-
       return true;
     });
-  }, [commercial, search, selectedCity, selectedType, selectedLease, minYield]);
+  }, [commercial, search, selectedCity, selectedType, selectedLease]);
 
   const resetFilters = () => {
     setSearch('');
     setSelectedCity('All');
     setSelectedType('All');
     setSelectedLease('All');
-    setMinYield(6);
   };
 
   return (
     <div className="bg-neutral dark:bg-black min-h-screen py-10">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
-        {/* Category Hero Banner — Real Commercial Real Estate Photography */}
+        {/* Category Hero Banner — Real Commercial Glass Architecture Photography */}
         <div className="relative rounded-3xl overflow-hidden bg-black text-white min-h-[380px] sm:min-h-[460px] flex items-center shadow-2xl">
           <Image
             src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=85"
-            alt="Commercial Real Estate Investment & Yield"
+            alt="Commercial Real Estate Investment & Office Floors"
             fill
             priority
             sizes="100vw"
@@ -108,12 +106,12 @@ export default function CommercialClient({ initialProperties }: CommercialClient
               Commercial Investment &amp; Pre-Leased Yield
             </h1>
 
-            <p className="text-neutral-300 text-sm sm:text-base font-light leading-relaxed">
+            <p className="text-white text-sm sm:text-base font-normal leading-relaxed">
               &ldquo;Commercial opportunities assessed through tenant quality, rental structure, location demand, resale potential, and appreciation logic.&rdquo;
             </p>
 
             {/* Commercial Proof & Scrutiny Strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-charcoal-800 text-xs text-neutral-300 font-light">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-charcoal-800 text-xs text-white font-normal">
               <div className="flex items-center gap-2">
                 <Users className="w-4 h-4 text-accent shrink-0" />
                 <span>Tenant Covenant Grade</span>
@@ -193,7 +191,7 @@ export default function CommercialClient({ initialProperties }: CommercialClient
               <button
                 type="button"
                 onClick={resetFilters}
-                className="flex-1 py-2.5 px-3 rounded-xl bg-neutral-100 dark:bg-charcoal-800 hover:bg-neutral-200 dark:hover:bg-charcoal-700 text-neutral-700 dark:text-neutral-300 font-semibold text-xs transition-colors flex items-center justify-center gap-1"
+                className="flex-1 py-2.5 px-3 rounded-xl bg-neutral-100 dark:bg-charcoal-800 hover:bg-neutral-200 dark:hover:bg-charcoal-700 text-neutral-700 dark:text-white font-bold text-xs transition-colors flex items-center justify-center gap-1"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Reset</span>
@@ -233,7 +231,7 @@ export default function CommercialClient({ initialProperties }: CommercialClient
               <h3 className="text-lg font-serif font-bold text-ink dark:text-white">
                 No Commercial Assets Match Your Selection
               </h3>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 max-w-sm mx-auto font-light">
+              <p className="text-xs text-neutral-700 dark:text-white max-w-sm mx-auto font-normal">
                 Contact our commercial advisory desk for institutional pre-leased mandates and off-market office floors.
               </p>
               <button
@@ -251,7 +249,7 @@ export default function CommercialClient({ initialProperties }: CommercialClient
       <LeadModal
         isOpen={isLeadModalOpen}
         onClose={() => setIsLeadModalOpen(false)}
-        propertyTitle="Commercial Investment Yield Inquiry"
+        propertyTitle="Commercial Investment & Yield Advisory"
       />
     </div>
   );
