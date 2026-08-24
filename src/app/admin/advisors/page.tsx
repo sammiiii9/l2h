@@ -52,7 +52,7 @@ export default function AdminAdvisorsPage() {
         body: JSON.stringify({
           ...editingAdvisor,
           role: editingAdvisor.role || 'Senior Real Estate Strategist',
-          phone: editingAdvisor.phone || '+91 98765 43210',
+          phone: editingAdvisor.phone || '+91 8439654385',
           avatar: editingAdvisor.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
           bio: editingAdvisor.bio || 'Advisory specialist for prime Delhi NCR real estate.',
           specialization: editingAdvisor.specialization || ['Luxury Homes', 'Commercial Assets'],

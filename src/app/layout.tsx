@@ -7,6 +7,7 @@ import CompareDrawer from '@/components/common/CompareDrawer';
 import MobileNav from '@/components/layout/MobileNav';
 import { CompareProvider } from '@/context/CompareContext';
 import { SavedProvider } from '@/context/SavedContext';
+import { ThemeProvider } from '@/context/ThemeContext';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://l2hsolution.com'),
@@ -84,8 +85,8 @@ const jsonLdGraph = {
       },
       image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
       description: 'Premier real estate advisory, property discovery, and market intelligence platform dealing across luxury residential, villas, plots, farmhouses, and commercial assets across Delhi NCR.',
-      telephone: '+91 98765 43210',
-      email: 'advisory@l2hsolution.com',
+      telephone: '+91 8439654385',
+      email: 'infol2h@gmail.com',
       priceRange: '₹50 Lakhs - ₹50+ Crores',
       areaServed: [
         { '@type': 'City', name: 'Noida' },
@@ -149,26 +150,54 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var stored = localStorage.getItem('l2h-theme');
+                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  var isDark = stored === 'dark' || (!stored && prefersDark) || (stored === 'system' && prefersDark);
+                  var root = document.documentElement;
+                  if (isDark) {
+                    root.classList.add('dark');
+                    root.classList.remove('light');
+                    root.style.colorScheme = 'dark';
+                  } else {
+                    root.classList.add('light');
+                    root.classList.remove('dark');
+                    root.style.colorScheme = 'light';
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-white text-zinc-950 selection:bg-zinc-900 selection:text-white font-sans antialiased">
-        <SavedProvider>
-          <CompareProvider>
-            <Navbar />
-            <main className="flex-grow">
-              {children}
-            </main>
-            <Footer />
-            <CompareDrawer />
-            <MobileNav />
-            <WhatsAppButton />
-          </CompareProvider>
-        </SavedProvider>
+      <body 
+        className="min-h-screen flex flex-col bg-neutral dark:bg-black text-ink dark:text-neutral-100 selection:bg-accent selection:text-black font-sans antialiased transition-colors duration-200"
+        suppressHydrationWarning
+      >
+        <ThemeProvider>
+          <SavedProvider>
+            <CompareProvider>
+              <Navbar />
+              <main className="flex-grow">
+                {children}
+              </main>
+              <Footer />
+              <CompareDrawer />
+              <MobileNav />
+              <WhatsAppButton />
+            </CompareProvider>
+          </SavedProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

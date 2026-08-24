@@ -1,253 +1,455 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
-  Sparkles, 
   ArrowRight, 
+  ArrowUpRight, 
   ShieldCheck, 
-  TrendingUp, 
-  Compass, 
   CheckCircle2, 
+  Phone, 
+  MessageSquare, 
+  Trees, 
+  Home, 
   Building2, 
-  ChevronRight,
-  BookOpen,
   MapPin,
+  TrendingUp,
+  FileCheck,
   Scale,
-  Phone
+  Sparkles
 } from 'lucide-react';
-import { PropertyService, BlogService, MarketReportService, LocationService } from '@/lib/data-store';
-import HeroSearch from '@/components/properties/HeroSearch';
-import ApproachTimeline from '@/components/home/ApproachTimeline';
+import { PropertyService, LocationService } from '@/lib/data-store';
 import PropertyCard from '@/components/properties/PropertyCard';
-import IntentExplorer from '@/components/home/IntentExplorer';
-import BudgetExplorer from '@/components/home/BudgetExplorer';
-import L2HConcierge from '@/components/common/L2HConcierge';
-import AdvisoryComparison from '@/components/home/AdvisoryComparison';
-import TestimonialSection from '@/components/home/TestimonialSection';
+import { createWhatsAppUrl } from '@/lib/utils';
+
+export const metadata = {
+  title: 'L2H Solution — Independent Real Estate Advisory | Luxury Properties & Land',
+  description: 'The right property starts with the right questions. L2H is an independent real-estate advisory for buyers who want every major property decision to stand up to scrutiny.',
+};
 
 export default async function HomePage() {
-  // Fetch featured curated properties
-  const { properties: allProps } = PropertyService.getAll({
-    limit: 6
+  const { properties: allProperties } = PropertyService.getAll({ status: 'Active' });
+
+  // Curate 6 top verified properties (2 per category)
+  const plotProps = allProperties
+    .filter((p: any) => p.category === 'plots' || p.category === 'Plots' || p.propertyType === 'Plot')
+    .slice(0, 2);
+
+  const resProps = allProperties
+    .filter((p: any) => (p.category === 'residential' || p.category === 'Residential' || p.category === 'Apartments' || p.category === 'Homes') && p.propertyType !== 'Plot' && p.propertyType !== 'Office' && p.propertyType !== 'Retail')
+    .slice(0, 2);
+
+  const comProps = allProperties
+    .filter((p: any) => p.category === 'commercial' || p.category === 'Commercial' || p.propertyType === 'Office' || p.propertyType === 'Retail')
+    .slice(0, 2);
+
+  const featuredProperties = [...plotProps, ...resProps, ...comProps];
+  const locationHubs = LocationService.getAll().slice(0, 3);
+
+  const whatsappLink = createWhatsAppUrl({
+    customMessage: 'Hi L2H Solution, I am reviewing property opportunities and would like to speak with a real estate advisor.'
   });
 
-  // Fetch market reports & locations
-  const marketReports = MarketReportService.getAll().slice(0, 2);
-  const locationHubs = LocationService.getAll();
-  const blogPosts = BlogService.getAll().slice(0, 3);
-
   return (
-    <div className="flex flex-col min-h-screen bg-black">
-      {/* 01 — HERO SECTION (BLACK) */}
-      <section className="relative min-h-[90vh] flex items-center justify-center bg-[#09090b] text-white overflow-hidden pt-12 pb-24">
-        {/* Full-width Architectural Visual Backdrop — Authentic Natural Photo */}
+    <div className="flex flex-col min-h-screen bg-neutral dark:bg-black text-ink dark:text-neutral-100 transition-colors duration-200">
+      
+      {/* =========================================================================
+          1. HERO — Clean, Minimal, Architectural & High-Impact
+         ========================================================================= */}
+      <section className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center bg-black text-white overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
+        {/* Full-Bleed Architectural Image Background */}
         <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2000&q=85"
-            alt="L2H Solution Real Estate Advisory"
-            className="w-full h-full object-cover opacity-25 scale-105"
+          <Image
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85"
+            alt="Luxury Real Estate Architecture and Advisory"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-40 filter brightness-90 contrast-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80" />
         </div>
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center space-y-8">
-          {/* Brand Tagline Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-zinc-300 text-xs font-semibold uppercase tracking-widest backdrop-blur-md shadow-lg">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>From Land to Legacy • Independent Real Estate Advisory</span>
+        <div className="max-w-4xl mx-auto relative z-10 w-full text-center space-y-8">
+          {/* Subtle Tag */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 dark:bg-charcoal-800/80 border border-white/20 dark:border-charcoal-700 backdrop-blur-md">
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
+              Independent Real Estate Advisory • Delhi NCR &amp; Pan-India
+            </span>
           </div>
 
-          {/* Main Headline */}
-          <div className="space-y-4 max-w-4xl mx-auto">
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-white tracking-tight leading-[1.1]">
-              From Land to Legacy. <br />
-              <span className="font-normal italic text-zinc-300">Chosen Around You.</span>
+          {/* Headline */}
+          <div className="space-y-4">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-white tracking-tight leading-[1.12]">
+              The right property starts <br />
+              <span className="font-normal italic text-neutral-200">with the right questions.</span>
             </h1>
 
-            <p className="text-zinc-400 text-xs sm:text-base max-w-2xl mx-auto leading-relaxed font-light">
-              Discover, evaluate and choose real estate with a team that looks beyond the property itself. We don't just find properties — we help you make better real-estate decisions.
+            <p className="text-neutral-200 text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed font-light">
+              L2H is an independent real-estate advisory for buyers who want every major property decision to stand up to scrutiny.
             </p>
           </div>
 
-          {/* Hero CTAs */}
+          {/* Action CTAs */}
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <Link
               href="/properties"
-              className="px-8 py-4 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold text-xs uppercase tracking-widest transition-all duration-200 shadow-lg hover:scale-105 flex items-center gap-2"
+              className="px-8 py-4 rounded-xl bg-accent hover:bg-yellow-400 text-black font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-gold-glow hover:shadow-gold-glow-lg"
             >
-              <Compass className="w-4 h-4 text-black" />
-              <span>Explore Properties</span>
+              Explore Properties
             </Link>
 
-            <Link
-              href="/contact"
-              className="px-8 py-4 rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold text-xs uppercase tracking-widest border border-white/15 backdrop-blur-md transition-all flex items-center gap-2"
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 rounded-xl bg-charcoal-800/90 hover:bg-charcoal-800 text-white font-semibold text-xs uppercase tracking-wider border border-charcoal-700 transition-colors flex items-center gap-2"
             >
-              <Phone className="w-4 h-4 text-zinc-300" />
+              <MessageSquare className="w-4 h-4 text-accent" />
               <span>Talk to an Advisor</span>
-            </Link>
-
-            <Link
-              href="/find-property"
-              className="px-6 py-4 rounded-xl bg-black/60 hover:bg-black text-white font-semibold text-xs uppercase tracking-widest border border-white/20 backdrop-blur-md transition-all flex items-center gap-2"
-            >
-              <Sparkles className="w-4 h-4 text-zinc-300" />
-              <span>Find Your Match</span>
-            </Link>
+            </a>
           </div>
 
-          {/* 5-Field Property Search Widget */}
-          <div className="pt-6">
-            <HeroSearch />
-          </div>
-
-          {/* Trust Metrics Bar */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-6 text-zinc-400 text-xs">
+          {/* Minimal Credibility Micro-Strip */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto pt-8 text-xs border-t border-charcoal-800/80 font-normal text-white">
             <div className="flex items-center justify-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-white shrink-0" />
-              <span>100% RERA Verified</span>
+              <ShieldCheck className="w-4 h-4 text-accent shrink-0" />
+              <span>100% Title Verified</span>
             </div>
             <div className="flex items-center justify-center gap-2">
-              <Compass className="w-4 h-4 text-white shrink-0" />
-              <span>Fiduciary Buyer Representation</span>
+              <Scale className="w-4 h-4 text-accent shrink-0" />
+              <span>Zero Developer Quotas</span>
             </div>
             <div className="flex items-center justify-center gap-2">
-              <TrendingUp className="w-4 h-4 text-white shrink-0" />
-              <span>Data-Backed Valuation Moats</span>
+              <TrendingUp className="w-4 h-4 text-accent shrink-0" />
+              <span>Registry Price Data</span>
             </div>
             <div className="flex items-center justify-center gap-2">
-              <Building2 className="w-4 h-4 text-white shrink-0" />
-              <span>Tier-1 NCR Developers</span>
+              <FileCheck className="w-4 h-4 text-accent shrink-0" />
+              <span>End-to-End Care</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 02 — WHAT ARE YOU LOOKING FOR? (WHITE) */}
-      <IntentExplorer />
+      {/* =========================================================================
+          2. WHAT WE DO — 3 Core Pillars (Clean 3-Column Grid)
+         ========================================================================= */}
+      <section className="py-20 bg-white dark:bg-charcoal-900 border-b border-neutral-200 dark:border-charcoal-800" id="services">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-amber-700 dark:text-accent">
+              Our Expertise
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-ink dark:text-white tracking-tight">
+              Three Discovery Pillars
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-white font-normal">
+              Structured research tailored to your capital horizon, lifestyle goals, and exit liquidity.
+            </p>
+          </div>
 
-      {/* 03 — CURATED OPPORTUNITIES (BLACK / GRAPHITE) */}
-      <section className="py-24 bg-[#0a0a0c] text-white border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-            <div className="space-y-3">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-zinc-300 text-xs font-semibold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Curated Selection</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Pillar 1: Plots & Land */}
+            <Link
+              href="/plots"
+              className="group bg-neutral-50 dark:bg-charcoal-800/90 rounded-3xl overflow-hidden border border-neutral-200 dark:border-charcoal-700 shadow-luxury-soft hover:shadow-luxury-hover transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <div className="h-60 relative overflow-hidden bg-black">
+                  <Image
+                    src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=85"
+                    alt="Plots and Land Pan-India"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover group-hover:scale-[1.04] transition-transform duration-700 opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-[11px] font-bold uppercase tracking-wider bg-yellow-950/90 text-yellow-300 border border-yellow-700">
+                      <Trees className="w-3.5 h-3.5" />
+                      <span>Plots &amp; Land</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-6 space-y-3">
+                  <h3 className="text-xl font-serif font-bold text-ink dark:text-white group-hover:text-amber-700 dark:group-hover:text-accent transition-colors">
+                    Plots &amp; Clear-Title Land Parcels
+                  </h3>
+                  <p className="text-xs sm:text-sm text-neutral-700 dark:text-white font-normal leading-relaxed">
+                    Clear-title land parcels across high-growth corridors like Yamuna Expressway, Dholera SIR, and Goa with 30-year mutation audits.
+                  </p>
+                </div>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight">
-                Curated Opportunities • Worth Exploring
+
+              <div className="p-6 pt-0 flex items-center justify-between text-xs font-bold text-amber-700 dark:text-accent group-hover:underline">
+                <span>Explore Land Parcels</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+
+            {/* Pillar 2: Residential */}
+            <Link
+              href="/residential"
+              className="group bg-neutral-50 dark:bg-charcoal-800/90 rounded-3xl overflow-hidden border border-neutral-200 dark:border-charcoal-700 shadow-luxury-soft hover:shadow-luxury-hover transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <div className="h-60 relative overflow-hidden bg-black">
+                  <Image
+                    src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85"
+                    alt="Luxury Residential Apartments and Estates"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover group-hover:scale-[1.04] transition-transform duration-700 opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-[11px] font-bold uppercase tracking-wider bg-charcoal-900/90 text-white border border-charcoal-700">
+                      <Home className="w-3.5 h-3.5 text-accent" />
+                      <span>Residential</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-6 space-y-3">
+                  <h3 className="text-xl font-serif font-bold text-ink dark:text-white group-hover:text-amber-700 dark:group-hover:text-accent transition-colors">
+                    Residential Apartments &amp; Estates
+                  </h3>
+                  <p className="text-xs sm:text-sm text-neutral-700 dark:text-white font-normal leading-relaxed">
+                    Luxury homes evaluated through daily living practicality, builder solvency, usable carpet area, and verified possession windows.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-6 pt-0 flex items-center justify-between text-xs font-bold text-amber-700 dark:text-accent group-hover:underline">
+                <span>Explore Residences</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+
+            {/* Pillar 3: Commercial */}
+            <Link
+              href="/commercial"
+              className="group bg-neutral-50 dark:bg-charcoal-800/90 rounded-3xl overflow-hidden border border-neutral-200 dark:border-charcoal-700 shadow-luxury-soft hover:shadow-luxury-hover transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <div className="h-60 relative overflow-hidden bg-black">
+                  <Image
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=85"
+                    alt="Commercial Real Estate and Yield"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover group-hover:scale-[1.04] transition-transform duration-700 opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-[11px] font-bold uppercase tracking-wider bg-charcoal-900/90 text-accent border border-accent/40">
+                      <Building2 className="w-3.5 h-3.5" />
+                      <span>Commercial</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-6 space-y-3">
+                  <h3 className="text-xl font-serif font-bold text-ink dark:text-white group-hover:text-amber-700 dark:group-hover:text-accent transition-colors">
+                    Pre-Leased Offices &amp; Retail Yield
+                  </h3>
+                  <p className="text-xs sm:text-sm text-neutral-700 dark:text-white font-normal leading-relaxed">
+                    Grade-A commercial assets with verified tenant covenants, long lock-in terms, and 7.5% - 9.2% net rental cash flow profiles.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-6 pt-0 flex items-center justify-between text-xs font-bold text-amber-700 dark:text-accent group-hover:underline">
+                <span>Explore Commercial</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================================
+          3. FEATURED VERIFIED OPPORTUNITIES — Clean 6-Card Grid
+         ========================================================================= */}
+      <section className="py-20 bg-neutral dark:bg-black border-b border-neutral-200 dark:border-charcoal-800">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="space-y-2">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-amber-700 dark:text-accent">
+                Curated Dossiers
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-ink dark:text-white tracking-tight">
+                Featured Verified Opportunities
               </h2>
-              <p className="text-zinc-400 text-xs sm:text-base max-w-2xl font-light leading-relaxed">
-                We don't dump inventory. Every property below has passed independent legal title review, density evaluation, and micro-market appreciation modeling.
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-white font-normal max-w-xl">
+                Rigorous title scrutiny, developer solvency checks, and verified secondary price benchmarks.
               </p>
             </div>
 
             <Link
               href="/properties"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-300 hover:text-white transition-colors shrink-0"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-charcoal-900 border border-neutral-200 dark:border-charcoal-700 text-xs font-bold text-ink dark:text-white hover:text-amber-700 dark:hover:text-accent transition-colors shadow-sm self-start md:self-auto"
             >
-              <span>Explore Complete Portfolio</span>
-              <ArrowRight className="w-4 h-4 text-zinc-300" />
+              <span>View All Properties</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allProps.map((property) => (
-              <PropertyCard key={property.id} property={property} />
+            {featuredProperties.map((prop, idx) => (
+              <PropertyCard key={prop.id} property={prop} priorityImage={idx < 2} />
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* View All Button */}
-          <div className="mt-12 text-center">
-            <Link
-              href="/properties"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold text-xs uppercase tracking-widest transition-colors shadow-lg"
-            >
-              <span>View All Verified Properties</span>
-              <ArrowRight className="w-4 h-4 text-black" />
-            </Link>
+      {/* =========================================================================
+          4. WHY CHOOSE L2H — 4 Trust Pillars (Clean & Breathable)
+         ========================================================================= */}
+      <section className="py-20 bg-white dark:bg-charcoal-900 border-b border-neutral-200 dark:border-charcoal-800">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+          
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-amber-700 dark:text-accent">
+              The Advisory Distinction
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-ink dark:text-white tracking-tight">
+              Why Buyers Trust L2H
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-white font-normal">
+              We operate exclusively on behalf of the buyer, replacing high-pressure sales with objective evidence.
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* 04 — OUR ADVISORY APPROACH (WHITE) */}
-      <ApproachTimeline />
-
-      {/* 05 — AI CONCIERGE & ADVISORY COMPARISON (BLACK / GRAPHITE) */}
-      <section className="py-20 bg-[#09090b] border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <L2HConcierge properties={allProps} />
-        </div>
-      </section>
-
-      <AdvisoryComparison />
-
-      {/* 06 — LOCATION CORRIDORS & RESEARCH SPOTLIGHT (WHITE) */}
-      <section className="py-24 bg-white text-zinc-950 border-b border-zinc-200">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-3">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-800 text-xs font-semibold uppercase tracking-wider">
-                <Compass className="w-3.5 h-3.5" />
-                <span>Corridor Intelligence</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-6 rounded-2xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-accent text-black flex items-center justify-center shadow-gold-glow">
+                <ShieldCheck className="w-5 h-5" />
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-zinc-950 tracking-tight">
-                High-Growth NCR Micro-Markets
+              <h3 className="text-lg font-serif font-bold text-ink dark:text-white">
+                30-Year Title Scrutiny
+              </h3>
+              <p className="text-xs text-neutral-700 dark:text-white font-normal leading-relaxed">
+                Complete legal cross-examination of revenue records, RERA filings, and municipal zoning master plans.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-accent text-black flex items-center justify-center shadow-gold-glow">
+                <Scale className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-serif font-bold text-ink dark:text-white">
+                Zero Developer Quotas
+              </h3>
+              <p className="text-xs text-neutral-700 dark:text-white font-normal leading-relaxed">
+                Zero sales bias. We never push high-margin inventory that compromises your capital horizon or lifestyle fit.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-accent text-black flex items-center justify-center shadow-gold-glow">
+                <TrendingUp className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-serif font-bold text-ink dark:text-white">
+                Registry Price Intel
+              </h3>
+              <p className="text-xs text-neutral-700 dark:text-white font-normal leading-relaxed">
+                Commercial negotiation grounded in actual sub-registrar transaction rates, not brochure price sheets.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-accent text-black flex items-center justify-center shadow-gold-glow">
+                <CheckCircle2 className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-serif font-bold text-ink dark:text-white">
+                Post-Handover Care
+              </h3>
+              <p className="text-xs text-neutral-700 dark:text-white font-normal leading-relaxed">
+                Full lifecycle stewardship through contract signing, pre-possession snagging audits, and secondary leasing exit.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================================
+          5. PRIME GROWTH CORRIDORS — 3 Micro-Market Hubs
+         ========================================================================= */}
+      <section className="py-20 bg-neutral dark:bg-black border-b border-neutral-200 dark:border-charcoal-800">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="space-y-2">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-amber-700 dark:text-accent">
+                Corridor Intelligence
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-ink dark:text-white tracking-tight">
+                High-Growth Micro-Markets
               </h2>
-              <p className="text-zinc-600 text-xs sm:text-base max-w-2xl font-light">
-                Analyze price trajectories, transit corridors, and development catalysts before committing capital.
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-white font-normal max-w-xl">
+                Infrastructure catalysts, master plan connectivity, and price trends across primary corridors.
               </p>
             </div>
 
             <Link
               href="/locations"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-900 hover:text-black transition-colors shrink-0"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 dark:text-accent hover:underline uppercase tracking-wider"
             >
-              <span>All Location Guides</span>
-              <ArrowRight className="w-4 h-4 text-zinc-600" />
+              <span>Explore All Corridors</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {locationHubs.map((loc) => (
               <Link
                 key={loc.id}
                 href={`/locations/${loc.slug}`}
-                className="bg-zinc-50 rounded-3xl overflow-hidden border border-zinc-200 hover:border-black hover:shadow-luxury transition-all duration-300 flex flex-col justify-between group"
+                className="group bg-white dark:bg-charcoal-900 rounded-3xl overflow-hidden border border-neutral-200 dark:border-charcoal-700 shadow-luxury-soft hover:shadow-luxury-hover transition-all flex flex-col justify-between"
               >
                 <div>
-                  <div className="h-48 relative overflow-hidden bg-zinc-950">
-                    <img
+                  <div className="h-52 relative overflow-hidden bg-black">
+                    <Image
                       src={loc.heroImage}
                       alt={loc.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                      className="object-cover group-hover:scale-[1.04] transition-transform duration-700 opacity-90"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                    <div className="absolute bottom-3 left-4 text-white">
-                      <span className="text-[10px] text-zinc-300 uppercase tracking-wider font-bold">{loc.city}</span>
-                      <h4 className="font-serif font-bold text-lg text-white">{loc.name}</h4>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                    
+                    <div className="absolute bottom-4 left-4 right-4 text-white">
+                      <div className="text-[10px] uppercase tracking-wider font-bold text-accent">
+                        {loc.state}
+                      </div>
+                      <h3 className="text-xl font-serif font-bold text-white">
+                        {loc.name}
+                      </h3>
                     </div>
                   </div>
 
                   <div className="p-6 space-y-3">
-                    <div className="flex justify-between text-xs py-1 border-b border-zinc-200">
-                      <span className="text-zinc-500">Benchmark:</span>
-                      <span className="font-bold text-zinc-950">{loc.avgPricePerSqFt}</span>
-                    </div>
-                    <div className="flex justify-between text-xs py-1 border-b border-zinc-200">
-                      <span className="text-zinc-500">Appreciation:</span>
-                      <span className="font-bold text-emerald-600">{loc.growthRateYoY}</span>
-                    </div>
-                    <p className="text-xs text-zinc-600 font-light line-clamp-2 leading-relaxed">
-                      {loc.overview}
+                    <p className="text-xs text-neutral-700 dark:text-white line-clamp-2 leading-relaxed font-normal">
+                      {loc.overview || loc.tagline}
                     </p>
+
+                    <div className="pt-3 border-t border-neutral-100 dark:border-charcoal-700 flex items-center justify-between text-xs">
+                      <span className="text-neutral-600 dark:text-neutral-300 font-medium">Benchmark Rate:</span>
+                      <span className="font-bold text-ink dark:text-white">{loc.avgPricePerSqFt}</span>
+                    </div>
                   </div>
                 </div>
 
-                <div className="p-6 pt-0 text-xs font-semibold text-zinc-950 flex items-center justify-between group-hover:text-black">
-                  <span>Explore Corridor Intelligence</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <div className="p-6 pt-0 flex items-center justify-between text-xs font-bold text-amber-700 dark:text-accent group-hover:underline">
+                  <span>Read Corridor Briefing</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
             ))}
@@ -255,117 +457,64 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 07 — MARKET RESEARCH REPORTS (WHITE) */}
-      <section className="py-24 bg-zinc-50 text-zinc-950 border-b border-zinc-200">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-3">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-200 text-zinc-800 text-xs font-semibold uppercase tracking-wider">
-                <BookOpen className="w-3.5 h-3.5" />
-                <span>L2H Intelligence Desk</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-zinc-950 tracking-tight">
-                Institutional Research Reports
+      {/* =========================================================================
+          6. CLIENT PERSPECTIVE — Minimal, Elegant Single-Quote Feature
+         ========================================================================= */}
+      <section className="py-20 bg-white dark:bg-charcoal-900 border-b border-neutral-200 dark:border-charcoal-800">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-amber-700 dark:text-accent">
+            Client Experience
+          </span>
+          <blockquote className="text-xl sm:text-2xl lg:text-3xl font-serif font-normal italic text-ink dark:text-white leading-relaxed">
+            &ldquo;Working with L2H was completely different from any previous broker experience in NCR. They pointed out structural floor-plan issues and municipal sanction delays that others omitted. That transparency saved us from a costly mistake.&rdquo;
+          </blockquote>
+          <div className="space-y-0.5">
+            <div className="text-sm font-bold text-ink dark:text-white">Rajiv &amp; Shalini Mehra</div>
+            <div className="text-xs text-neutral-600 dark:text-neutral-300 font-normal">4 BHK Sky Villa Acquisition • Sector 150, Noida Expressway</div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          7. FINAL ADVISORY CONSULTATION CTA — Direct & Clean
+         ========================================================================= */}
+      <section className="py-20 bg-neutral-50 dark:bg-black text-ink dark:text-white relative overflow-hidden transition-colors">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="bg-white dark:bg-charcoal-900 border border-neutral-200 dark:border-charcoal-700 rounded-3xl p-8 sm:p-12 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="space-y-3 text-center md:text-left max-w-xl">
+              <span className="text-[11px] uppercase tracking-[0.2em] font-bold text-amber-700 dark:text-accent">
+                Start With Scrutiny
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-ink dark:text-white tracking-tight">
+                Ready to Evaluate Your Next Property Decision?
               </h2>
-              <p className="text-zinc-600 text-xs sm:text-base max-w-2xl font-light">
-                Download verified macroeconomic research briefs and corridor impact matrixes.
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-white font-normal leading-relaxed">
+                Connect directly with an L2H strategist for independent title scrutiny, floor plan audits, or custom investment dossiers.
               </p>
             </div>
 
-            <Link
-              href="/market-reports"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-900 hover:text-black transition-colors shrink-0"
-            >
-              <span>View All Market Reports</span>
-              <ArrowRight className="w-4 h-4 text-zinc-600" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {marketReports.map((report) => (
-              <div
-                key={report.id}
-                className="bg-white rounded-3xl p-6 sm:p-8 border border-zinc-200 shadow-sm flex flex-col sm:flex-row gap-6 items-center group hover:border-black transition-colors"
+            <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0 w-full md:w-auto">
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-accent hover:bg-yellow-400 text-black font-bold text-xs uppercase tracking-wider transition-all text-center shadow-gold-glow"
               >
-                <div className="w-full sm:w-44 h-48 rounded-2xl overflow-hidden relative bg-zinc-950 shrink-0">
-                  <img
-                    src={report.coverImage}
-                    alt={report.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  <span className="absolute bottom-2 left-2 px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-white text-black">
-                    {report.period}
-                  </span>
-                </div>
+                Talk to an Advisor
+              </a>
 
-                <div className="space-y-3 flex-1">
-                  <span className="text-[10px] text-zinc-400 font-mono uppercase tracking-wider">{report.location}</span>
-                  <h3 className="text-xl font-serif font-bold text-zinc-950 line-clamp-2 group-hover:text-zinc-700 transition-colors">
-                    {report.title}
-                  </h3>
-                  <p className="text-xs text-zinc-600 font-light line-clamp-2 leading-relaxed">
-                    {report.subtitle}
-                  </p>
-
-                  <div className="pt-2">
-                    <Link
-                      href="/market-reports"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-zinc-950 hover:underline"
-                    >
-                      <span>Read Executive Summary &amp; Download</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-zinc-600" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 08 — VERIFIED CLIENT TESTIMONIALS (WHITE) */}
-      <TestimonialSection />
-
-      {/* 09 — ADVISOR CTA: TELL US WHAT YOU'RE LOOKING FOR (BLACK / GRAPHITE) */}
-      <section className="py-24 bg-[#09090b] text-white relative overflow-hidden">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="bg-[#121214] border border-white/15 rounded-3xl p-8 sm:p-14 shadow-2xl relative overflow-hidden">
-            <div className="relative z-10 max-w-2xl space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-zinc-300 text-xs font-semibold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Tell Us What You're Looking For</span>
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white tracking-tight">
-                Share Your Requirement. We'll Help You Narrow Down the Market.
-              </h2>
-
-              <p className="text-zinc-400 text-xs sm:text-base leading-relaxed font-light">
-                Answer simple questions about your preferred category, location, budget, and timeline. Our advisory team will analyze the market and prepare a customized shortlist matching your criteria.
-              </p>
-
-              <div className="pt-2 flex flex-wrap items-center gap-4">
-                <Link
-                  href="/find-property"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold text-xs uppercase tracking-widest transition-all shadow-lg hover:scale-105"
-                >
-                  <span>Start My Property Search (60 Seconds)</span>
-                  <ArrowRight className="w-4 h-4 text-black" />
-                </Link>
-
-                <a
-                  href="tel:+919876543210"
-                  className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold text-xs uppercase tracking-wider border border-white/15 transition-colors"
-                >
-                  <Phone className="w-4 h-4 text-zinc-300" />
-                  <span>Call Advisory Desk</span>
-                </a>
-              </div>
+              <a
+                href="tel:+918439654385"
+                className="w-full sm:w-auto px-6 py-4 rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-charcoal-800 dark:hover:bg-charcoal-700 border border-neutral-300 dark:border-charcoal-700 text-ink dark:text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
+              >
+                <Phone className="w-4 h-4 text-amber-600 dark:text-accent" />
+                <span>+91 8439654385</span>
+              </a>
             </div>
           </div>
         </div>
       </section>
+
     </div>
   );
 }

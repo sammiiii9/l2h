@@ -45,8 +45,8 @@ const jsonLdGraph = {
       mainEntity: {
         '@type': 'RealEstateAgent',
         name: 'L2H Solution',
-        telephone: '+91 98765 43210',
-        email: 'advisory@l2hsolution.com',
+        telephone: '+91 8439654385',
+        email: 'infol2h@gmail.com',
         address: {
           '@type': 'PostalAddress',
           streetAddress: 'Tower B, 14th Floor, Advant Navis Business Park, Sector 142',

@@ -232,7 +232,7 @@ export default function MarketReportsClient({ reports }: MarketReportsClientProp
                     required
                     value={leadForm.phone}
                     onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value })}
-                    placeholder="+91 98765 43210"
+                    placeholder="+91 8439654385"
                     className="w-full px-3.5 py-2.5 rounded-xl bg-black border border-white/15 text-white focus:border-white focus:outline-none font-mono"
                   />
                 </div>

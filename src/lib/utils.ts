@@ -40,18 +40,22 @@ export function formatIndianNumber(num: number): string {
 export function createWhatsAppUrl(options: {
   phone?: string;
   propertyName?: string;
+  propertyTitle?: string;
+  propertyLocation?: string;
   propertyUrl?: string;
   customMessage?: string;
   referenceId?: string;
 }): string {
-  const defaultPhone = '919876543210'; // L2H Official Advisory Desk
+  const defaultPhone = '918439654385'; // L2H Official Advisory Desk
   const phone = (options.phone || defaultPhone).replace(/[^0-9]/g, '');
 
   let message = '';
+  const title = options.propertyName || options.propertyTitle;
+
   if (options.customMessage) {
     message = options.customMessage;
-  } else if (options.propertyName) {
-    message = `Hi L2H Solution, I am interested in ${options.propertyName}.${
+  } else if (title) {
+    message = `Hi L2H Solution, I am interested in "${title}"${options.propertyLocation ? ` in ${options.propertyLocation}` : ''}.${
       options.propertyUrl ? ` (URL: ${options.propertyUrl})` : ''
     } Please share detailed pricing, floor plans and available inventory.`;
   } else if (options.referenceId) {

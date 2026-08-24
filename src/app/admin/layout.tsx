@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { 
   LayoutDashboard, 
@@ -11,9 +12,7 @@ import {
   BookOpen, 
   BarChart3, 
   LogOut, 
-  Sparkles, 
   Compass, 
-  ShieldCheck, 
   Menu, 
   X,
   ExternalLink
@@ -23,34 +22,51 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [user, setUser] = useState<any>({
-    name: 'Vikram Malhotra',
-    role: 'Principal Advisor / Admin',
-    email: 'admin@l2h.com'
-  });
+  const [user, setUser] = useState<any>(null);
+  const [checkingAuth, setCheckingAuth] = useState(true);
 
   const isLoginPage = pathname === '/admin/login';
 
   useEffect(() => {
-    // Check if user is logged in
+    if (isLoginPage) {
+      setCheckingAuth(false);
+      return;
+    }
+
     const storedUser = localStorage.getItem('l2h_admin_user');
-    if (storedUser) {
+    const storedToken = localStorage.getItem('l2h_jwt_token');
+
+    if (storedUser && storedToken) {
       try {
         setUser(JSON.parse(storedUser));
-      } catch (e) {}
-    } else if (!isLoginPage) {
-      // Default to guest demo admin
-      localStorage.setItem('l2h_admin_user', JSON.stringify(user));
+      } catch (e) {
+        router.push('/admin/login');
+      }
+    } else {
+      router.push('/admin/login');
     }
-  }, [isLoginPage]);
+    setCheckingAuth(false);
+  }, [isLoginPage, router, pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem('l2h_admin_user');
+    localStorage.removeItem('l2h_jwt_token');
     router.push('/admin/login');
   };
 
   if (isLoginPage) {
     return <>{children}</>;
+  }
+
+  if (checkingAuth || !user) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center p-6">
+        <div className="text-center space-y-3">
+          <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="text-xs text-neutral-400 font-light">Verifying authenticated advisor session...</p>
+        </div>
+      </div>
+    );
   }
 
   const NAV_ITEMS = [
@@ -63,18 +79,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col lg:flex-row">
+    <div className="min-h-screen bg-black text-neutral-100 flex flex-col lg:flex-row">
       {/* Mobile Top Bar */}
-      <div className="lg:hidden bg-zinc-900 border-b border-zinc-800 p-3.5 flex items-center justify-between sticky top-0 z-40">
+      <div className="lg:hidden bg-charcoal-900 border-b border-charcoal-800 p-3.5 flex items-center justify-between sticky top-0 z-40">
         <Link href="/" className="inline-flex items-center">
           <div className="bg-white px-3 py-1.5 rounded-xl">
-            <img src="/logo.png" alt="L2H Solution" className="h-[28px] w-auto object-contain" />
+            <Image src="/logo.png" alt="L2H Solution" width={110} height={28} className="h-[28px] w-auto object-contain" />
           </div>
         </Link>
 
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-2 rounded-lg text-zinc-300 hover:text-white hover:bg-zinc-800"
+          className="p-2 rounded-lg text-neutral-300 hover:text-white hover:bg-charcoal-800"
+          aria-label="Toggle navigation drawer"
         >
           {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
@@ -82,7 +99,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* Sidebar Navigation */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-72 bg-zinc-950 border-r border-zinc-800 flex flex-col justify-between transform transition-transform duration-200 lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-72 bg-charcoal-900 border-r border-charcoal-800 flex flex-col justify-between transform transition-transform duration-200 lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } lg:static lg:min-h-screen shrink-0`}
       >
@@ -90,27 +107,28 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           {/* Brand Logo */}
           <div className="flex items-center justify-between">
             <Link href="/" className="inline-flex items-center">
-              <div className="bg-white px-3.5 py-2 rounded-xl shadow-sm border border-white/20">
-                <img src="/logo.png" alt="L2H Solution" className="h-[34px] w-auto object-contain" />
+              <div className="bg-white px-3.5 py-2 rounded-xl shadow-sm border border-neutral-200">
+                <Image src="/logo.png" alt="L2H Solution" width={130} height={34} className="h-[34px] w-auto object-contain" />
               </div>
             </Link>
 
             <button
               onClick={() => setSidebarOpen(false)}
-              className="lg:hidden text-slate-400 hover:text-white"
+              className="lg:hidden text-neutral-400 hover:text-white"
+              aria-label="Close sidebar"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
           {/* User Bio Card */}
-          <div className="p-3.5 rounded-2xl bg-charcoal-950 border border-charcoal-800 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gold/20 text-gold flex items-center justify-center font-bold text-sm font-serif ring-1 ring-gold/40">
+          <div className="p-3.5 rounded-2xl bg-black border border-charcoal-800 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-charcoal-800 text-accent flex items-center justify-center font-bold text-sm font-serif ring-1 ring-accent/40">
               {user.name?.charAt(0) || 'V'}
             </div>
             <div className="truncate">
               <div className="text-xs font-bold text-white truncate">{user.name}</div>
-              <div className="text-[10px] text-gold truncate">{user.role || 'Admin'}</div>
+              <div className="text-[10px] text-accent truncate">{user.role || 'Admin'}</div>
             </div>
           </div>
 
@@ -126,8 +144,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   onClick={() => setSidebarOpen(false)}
                   className={`flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-semibold tracking-wide transition-all ${
                     isActive
-                      ? 'bg-gold text-charcoal-950 shadow-md font-bold'
-                      : 'text-slate-300 hover:text-white hover:bg-charcoal-800/70'
+                      ? 'bg-accent text-black font-bold shadow-gold-glow'
+                      : 'text-neutral-300 hover:text-white hover:bg-charcoal-800'
                   }`}
                 >
                   <Icon className="w-4 h-4 shrink-0" />
@@ -143,10 +161,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <Link
             href="/"
             target="_blank"
-            className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-charcoal-950 border border-charcoal-800 text-slate-300 hover:text-gold text-xs font-medium transition-colors"
+            className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-black border border-charcoal-800 text-neutral-300 hover:text-accent text-xs font-medium transition-colors"
           >
             <span className="flex items-center gap-2">
-              <Compass className="w-3.5 h-3.5 text-gold" />
+              <Compass className="w-3.5 h-3.5 text-accent" />
               <span>Live Website</span>
             </span>
             <ExternalLink className="w-3.5 h-3.5" />

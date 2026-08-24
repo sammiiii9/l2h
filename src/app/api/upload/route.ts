@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+// Max 5MB per upload
+const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024;
+const ALLOWED_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.svg', '.gif']);
+
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
@@ -19,16 +23,24 @@ export async function POST(request: NextRequest) {
     const uploadedUrls: { url: string; caption?: string }[] = [];
 
     for (const file of files) {
+      if (file.size > MAX_FILE_SIZE_BYTES) {
+        return NextResponse.json({ error: `File "${file.name}" exceeds maximum allowed size of 5MB` }, { status: 400 });
+      }
+
+      const rawExt = path.extname(file.name).toLowerCase();
+      if (!ALLOWED_EXTENSIONS.has(rawExt)) {
+        return NextResponse.json({ error: `Unsupported file format "${rawExt}". Only image files (.jpg, .jpeg, .png, .webp, .svg) are allowed.` }, { status: 400 });
+      }
+
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
-      const ext = path.extname(file.name) || '.jpg';
-      const cleanName = `${Date.now()}-${Math.random().toString(36).substring(2, 8)}${ext}`;
+      const cleanName = `${Date.now()}-${Math.random().toString(36).substring(2, 10)}${rawExt}`;
       const filePath = path.join(uploadsDir, cleanName);
 
       fs.writeFileSync(filePath, buffer);
       uploadedUrls.push({
         url: `/uploads/${cleanName}`,
-        caption: file.name.replace(ext, '').replace(/[-_]+/g, ' ')
+        caption: file.name.replace(rawExt, '').replace(/[^a-zA-Z0-9\s_-]/g, '').trim()
       });
     }
 
@@ -37,7 +49,6 @@ export async function POST(request: NextRequest) {
       images: uploadedUrls
     }, { status: 201 });
   } catch (error: any) {
-    console.error('File upload error:', error);
     return NextResponse.json({ error: 'Failed to upload files', details: error.message }, { status: 500 });
   }
 }

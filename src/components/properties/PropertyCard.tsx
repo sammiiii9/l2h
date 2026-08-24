@@ -2,166 +2,139 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
   MapPin, 
-  ShieldCheck, 
-  TrendingUp, 
   ArrowUpRight, 
-  Sparkles,
+  Trees, 
+  Home, 
+  Building2, 
+  Scale, 
   MessageSquare,
-  Scale,
-  Check,
-  CheckCircle2,
-  AlertCircle
+  Sparkles
 } from 'lucide-react';
 import { Property } from '@/types';
 import { formatPrice, formatIndianNumber, createWhatsAppUrl } from '@/lib/utils';
 import { useCompare } from '@/context/CompareContext';
-import { useSaved } from '@/context/SavedContext';
-import { trackEvent } from '@/lib/analytics';
 import LeadModal from '@/components/common/LeadModal';
-import { Heart } from 'lucide-react';
 
 interface PropertyCardProps {
   property: Property;
+  priorityImage?: boolean;
   layout?: 'grid' | 'list';
 }
 
-export default function PropertyCard({ property, layout = 'grid' }: PropertyCardProps) {
+export default function PropertyCard({ 
+  property, 
+  priorityImage = false,
+  layout = 'grid'
+}: PropertyCardProps) {
+  const { isInCompare, addToCompare, removeFromCompare } = useCompare();
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
-  const { addToCompare, removeFromCompare, isInCompare } = useCompare();
-  const { saveProperty, removeSavedProperty, isSaved } = useSaved();
 
   const isCompared = isInCompare(property.id);
-  const saved = isSaved(property.id);
-  const featuredImage = property.images[0]?.url || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80';
 
-  const whatsappUrl = createWhatsAppUrl({
-    propertyName: property.title,
-    propertyUrl: `https://l2hsolution.com/properties/${property.slug}`
-  });
-
-  const isList = layout === 'list';
-
-  const handleToggleCompare = (e: React.MouseEvent) => {
+  const handleCompareToggle = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     if (isCompared) {
       removeFromCompare(property.id);
     } else {
       addToCompare(property);
-      trackEvent('property_compare', { propertyId: property.id, title: property.title });
     }
   };
 
-  const handleToggleSave = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (saved) {
-      removeSavedProperty(property.id);
-    } else {
-      saveProperty(property);
-    }
-  };
+  const whatsappUrl = createWhatsAppUrl({
+    customMessage: `Hi L2H Solution, I am inquiring regarding "${property.title}" in ${property.location.locality}, ${property.location.city}. Please share complete floor plans and due diligence dossier.`
+  });
 
-  const verification = property.verificationStatus || 'Verified';
+  // Category classification & subtle accent tag
+  const catLower = (property.category || '').toLowerCase();
+  const isPlot = catLower === 'plots' || catLower === 'plot' || property.propertyType.toLowerCase() === 'plot';
+  const isCommercial = catLower === 'commercial' || property.propertyType.toLowerCase() === 'office' || property.propertyType.toLowerCase() === 'retail';
+  const isResidential = !isPlot && !isCommercial;
+
+  let categoryLabel = 'Residential';
+  let categoryTagClass = 'bg-charcoal-800/90 text-white border-charcoal-700';
+  let CategoryIcon = Home;
+
+  if (isPlot) {
+    categoryLabel = 'Plots & Land';
+    categoryTagClass = 'bg-yellow-950/90 text-yellow-300 border-yellow-700/80';
+    CategoryIcon = Trees;
+  } else if (isCommercial) {
+    categoryLabel = 'Commercial';
+    categoryTagClass = 'bg-charcoal-900/90 text-accent border-accent/40';
+    CategoryIcon = Building2;
+  }
+
+  const imageUrl = property.images?.[0]?.url || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80';
 
   return (
     <>
-      <div 
-        className={`group bg-white rounded-3xl overflow-hidden border border-zinc-200/90 shadow-luxury hover:shadow-luxury-hover transition-all duration-300 flex flex-col ${
-          isList ? 'md:flex-row' : ''
+      <article 
+        className={`group bg-white dark:bg-charcoal-900 border border-neutral-200/80 dark:border-charcoal-700 rounded-2xl overflow-hidden shadow-luxury-soft hover:shadow-luxury-hover transition-all duration-300 flex flex-col ${
+          layout === 'list' ? 'md:flex-row' : ''
         }`}
       >
-        {/* Thumbnail Visual Container — Authentic Natural Photography */}
-        <div className={`relative overflow-hidden ${isList ? 'md:w-2/5 min-h-[280px]' : 'h-64'} w-full bg-zinc-950`}>
-          <img
-            src={featuredImage}
+        {/* Image Container — Dominant (65-70% height/width) */}
+        <div className={`relative overflow-hidden bg-black ${
+          layout === 'list' ? 'md:w-3/5 min-h-[300px]' : 'h-72 sm:h-80'
+        }`}>
+          <Image
+            src={imageUrl}
             alt={property.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-            loading="lazy"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={priorityImage}
+            className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
-          {/* Architectural Smoked Glass Badges Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/40 p-3.5 flex flex-col justify-between">
-            <div className="flex items-start justify-between gap-2">
-              <div className="flex flex-wrap items-center gap-1.5">
-                <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold tracking-wider uppercase bg-black/80 text-white border border-white/20 backdrop-blur-md shadow-sm">
-                  {property.category}
-                </span>
+          {/* Top Category Tag & Compare Action */}
+          <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 z-10">
+            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-[11px] font-bold tracking-wider uppercase border backdrop-blur-md ${categoryTagClass}`}>
+              <CategoryIcon className="w-3.5 h-3.5 text-accent" />
+              <span>{categoryLabel}</span>
+            </span>
 
-                {/* Verification Status Badge */}
-                <span className={`px-2 py-0.5 rounded-lg text-[10px] font-bold tracking-wider uppercase backdrop-blur-md flex items-center gap-1 shadow-sm ${
-                  verification === 'Verified'
-                    ? 'bg-emerald-950/90 text-emerald-300 border border-emerald-500/40'
-                    : verification === 'Developer Provided'
-                    ? 'bg-zinc-900/90 text-zinc-300 border border-zinc-700'
-                    : 'bg-amber-950/90 text-amber-300 border border-amber-500/40'
-                }`}>
-                  <ShieldCheck className="w-3 h-3" />
-                  <span>{verification}</span>
-                </span>
+            <button
+              onClick={handleCompareToggle}
+              className={`p-2 rounded-xl text-xs font-semibold backdrop-blur-md transition-all shadow-sm ${
+                isCompared
+                  ? 'bg-accent text-black shadow-gold-glow font-bold'
+                  : 'bg-black/80 hover:bg-black text-white border border-white/20'
+              }`}
+              title={isCompared ? 'Remove from Compare' : 'Add to Compare'}
+              aria-label="Toggle property comparison"
+            >
+              <Scale className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {/* Bottom Overlay Info on Image */}
+          <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3 z-10">
+            <div>
+              <div className="text-[11px] text-white font-medium tracking-wide uppercase drop-shadow-md">
+                {property.developer?.name || 'Verified Development'}
               </div>
-
-              {/* Action Buttons: Compare & Save */}
-              <div className="flex items-center gap-1.5">
-                <button
-                  type="button"
-                  onClick={handleToggleSave}
-                  className={`p-1.5 rounded-lg backdrop-blur-md transition-all shadow-md ${
-                    saved
-                      ? 'bg-red-500 text-white'
-                      : 'bg-black/70 text-white hover:text-red-400 border border-white/20'
-                  }`}
-                  title={saved ? 'Remove from Saved' : 'Save Property'}
-                >
-                  <Heart className={`w-3.5 h-3.5 ${saved ? 'fill-current' : ''}`} />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleToggleCompare}
-                  className={`px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all flex items-center gap-1 backdrop-blur-md shadow-md ${
-                    isCompared
-                      ? 'bg-white text-black font-bold scale-105'
-                      : 'bg-black/70 text-white hover:text-white border border-white/20 hover:bg-black/90'
-                  }`}
-                  title={isCompared ? 'Remove from Compare' : 'Add to Compare'}
-                >
-                  <Scale className="w-3 h-3" />
-                  <span>{isCompared ? 'Compared' : '+ Compare'}</span>
-                </button>
+              <div className="text-xl sm:text-2xl font-serif font-bold text-white tracking-tight drop-shadow-md">
+                {property.priceDisplay || formatPrice(property.price)}
               </div>
             </div>
 
-            {/* Quick Price on image in architectural smoked glass pill */}
-            <div className="flex items-end justify-between text-white">
-              <div>
-                <div className="text-[10px] text-zinc-300 uppercase tracking-wider font-medium">
-                  {property.developer.name}
-                </div>
-                <div className="text-lg sm:text-xl font-serif font-bold text-white drop-shadow-sm">
-                  {property.priceDisplay || formatPrice(property.price)}
-                </div>
-              </div>
-
-              <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider backdrop-blur-md ${
-                property.possessionStatus === 'Ready to Move' 
-                  ? 'bg-emerald-900/90 text-emerald-200 border border-emerald-500/30'
-                  : 'bg-black/80 text-zinc-200 border border-white/20'
-              }`}>
-                {property.possessionStatus}
-              </span>
-            </div>
+            <span className="px-2.5 py-1 rounded-md text-[10px] font-bold tracking-wider uppercase bg-black/90 text-white border border-charcoal-700 backdrop-blur-md">
+              {property.possessionStatus}
+            </span>
           </div>
         </div>
 
-        {/* Content Container */}
-        <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div className="space-y-2.5">
-            {/* Location & Sector */}
-            <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-medium">
-              <MapPin className="w-3.5 h-3.5 text-zinc-700 shrink-0" />
+        {/* Editorial Body Below Image */}
+        <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div className="space-y-3">
+            {/* Locality */}
+            <div className="flex items-center gap-1.5 text-xs text-neutral-700 dark:text-white font-medium">
+              <MapPin className="w-3.5 h-3.5 text-amber-600 dark:text-accent shrink-0" />
               <span className="truncate">
                 {property.location.locality}, {property.location.city}
               </span>
@@ -169,93 +142,87 @@ export default function PropertyCard({ property, layout = 'grid' }: PropertyCard
 
             {/* Title */}
             <Link href={`/properties/${property.slug}`} className="block group/title">
-              <h3 className="text-lg font-serif font-bold text-zinc-950 group-hover/title:text-zinc-600 transition-colors line-clamp-1">
+              <h3 className="text-lg font-serif font-bold text-ink dark:text-white group-hover/title:text-amber-700 dark:group-hover/title:text-accent transition-colors line-clamp-1">
                 {property.title}
               </h3>
             </Link>
 
-            {/* L2H Perspective Tag Pills */}
-            {property.l2hPerspective?.bestFor && (
-              <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-                <span className="text-[10px] text-zinc-400 font-semibold uppercase">Best For:</span>
-                {property.l2hPerspective.bestFor.slice(0, 3).map((tag, tIdx) => (
-                  <span
-                    key={tIdx}
-                    className="px-2 py-0.5 rounded-md bg-zinc-100 text-[10px] font-semibold text-zinc-800 border border-zinc-200"
-                  >
-                    {tag}
-                  </span>
-                ))}
+            {/* Editorial Thesis / Rationale — Pure White in Dark Mode */}
+            <p className="text-xs text-neutral-800 dark:text-white font-normal leading-relaxed line-clamp-2 italic border-l-2 border-accent pl-3">
+              &ldquo;{property.l2hPerspective?.valueAssessment || property.tagline || property.description}&rdquo;
+            </p>
+
+            {/* Category-Specific Specifications Line — Pure White in Dark Mode */}
+            {isPlot && (
+              <div className="flex items-center justify-between pt-2 border-t border-neutral-100 dark:border-charcoal-700 text-xs font-medium">
+                <span className="text-neutral-800 dark:text-white">
+                  {property.plotSizeSqYd || Math.round(property.superArea / 9)} sq.yd. ({property.titleType || 'Freehold'})
+                </span>
+                <span className="font-bold text-ink dark:text-accent">
+                  {property.ratePerSqYd ? `₹${formatIndianNumber(property.ratePerSqYd)}/sq.yd` : 'Clear Title'}
+                </span>
               </div>
             )}
 
-            {/* Tagline / Subtitle */}
-            <p className="text-xs text-zinc-600 line-clamp-2 leading-relaxed font-light">
-              {property.tagline || property.description}
-            </p>
+            {isResidential && (
+              <div className="flex items-center justify-between pt-2 border-t border-neutral-100 dark:border-charcoal-700 text-xs font-medium">
+                <span className="text-neutral-800 dark:text-white">
+                  {property.configuration.split('+')[0] || `${property.bedrooms || '3'} BHK`} • {property.carpetArea ? `${formatIndianNumber(property.carpetArea)} sq.ft. carpet` : `${formatIndianNumber(property.superArea)} sq.ft.`}
+                </span>
+                <span className="font-mono text-[10px] text-amber-700 dark:text-accent font-bold uppercase tracking-wider" title={property.reraNumber}>
+                  RERA Verified
+                </span>
+              </div>
+            )}
+
+            {isCommercial && (
+              <div className="flex items-center justify-between pt-2 border-t border-neutral-100 dark:border-charcoal-700 text-xs font-medium">
+                <span className="text-neutral-800 dark:text-white">
+                  {property.leaseStatus || 'Pre-leased'} • {property.superArea} sq.ft.
+                </span>
+                <span className="font-bold text-amber-700 dark:text-accent">
+                  {property.expectedRentalYieldPct || 8.2}% Net Yield
+                </span>
+              </div>
+            )}
           </div>
 
-          {/* Key Specs Bar */}
-          <div className="grid grid-cols-3 gap-2 py-2.5 px-3 rounded-xl bg-zinc-50 border border-zinc-200/80 text-zinc-700 text-xs">
-            <div className="flex flex-col">
-              <span className="text-[9px] text-zinc-400 uppercase tracking-wider font-semibold">Config</span>
-              <span className="font-bold text-zinc-900 truncate">
-                {property.configuration.split('+')[0] || `${property.bedrooms || 'Custom'} BHK`}
-              </span>
-            </div>
-
-            <div className="flex flex-col">
-              <span className="text-[9px] text-zinc-400 uppercase tracking-wider font-semibold">Super Area</span>
-              <span className="font-bold text-zinc-900">
-                {formatIndianNumber(property.superArea)} {property.areaUnit}
-              </span>
-            </div>
-
-            <div className="flex flex-col">
-              <span className="text-[9px] text-zinc-400 uppercase tracking-wider font-semibold">RERA</span>
-              <span className="font-bold text-zinc-900 truncate text-[10px] font-mono" title={property.reraNumber}>
-                {property.reraNumber || 'Verified'}
-              </span>
-            </div>
-          </div>
-
-          {/* Bottom Actions */}
-          <div className="flex items-center justify-between gap-2 pt-1">
+          {/* Action Row */}
+          <div className="flex items-center justify-between gap-3 pt-3 border-t border-neutral-100 dark:border-charcoal-700">
             <Link
               href={`/properties/${property.slug}`}
-              className="flex-1 py-2.5 px-3.5 rounded-xl bg-black hover:bg-zinc-800 text-white font-semibold text-xs text-center transition-colors flex items-center justify-center gap-1.5 group/btn"
+              className="flex-1 py-2.5 px-4 rounded-xl bg-black hover:bg-charcoal-800 dark:bg-charcoal-800 dark:hover:bg-charcoal-700 text-white font-bold text-xs text-center transition-colors flex items-center justify-center gap-1.5 group/btn border border-neutral-300 dark:border-charcoal-700"
             >
-              <span>Perspective &amp; Details</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+              <span>Explore Dossier</span>
+              <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform text-accent" />
             </Link>
 
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-xl border border-zinc-200 hover:border-green-500 hover:bg-green-50 text-zinc-700 hover:text-green-700 transition-colors shrink-0"
-              title="Ask on WhatsApp with Property Context"
+              className="p-2.5 rounded-xl border border-neutral-300 dark:border-charcoal-700 hover:border-accent hover:bg-yellow-950/20 text-neutral-800 dark:text-white transition-colors shrink-0"
+              title="Inquire on WhatsApp"
+              aria-label="Direct WhatsApp Advisory Consultation"
             >
-              <MessageSquare className="w-4 h-4 text-green-600" />
+              <MessageSquare className="w-4 h-4 text-accent" />
             </a>
 
             <button
+              type="button"
               onClick={() => setIsLeadModalOpen(true)}
-              className="py-2.5 px-3 rounded-xl border border-zinc-300 bg-white hover:bg-black hover:text-white text-zinc-900 text-xs font-bold uppercase tracking-wider transition-colors shrink-0"
+              className="py-2.5 px-3 rounded-xl border border-neutral-300 dark:border-charcoal-700 hover:border-accent text-ink dark:text-white text-xs font-bold uppercase tracking-wider transition-colors shrink-0"
             >
               Inquire
             </button>
           </div>
         </div>
-      </div>
+      </article>
 
-      {/* Quick Inquire Modal */}
       <LeadModal
         isOpen={isLeadModalOpen}
         onClose={() => setIsLeadModalOpen(false)}
-        property={property}
-        title={`Inquire: ${property.title}`}
-        subtitle="Connect with an L2H property strategist for verified pricing, site visits, and independent advisory."
+        propertyTitle={property.title}
       />
     </>
   );

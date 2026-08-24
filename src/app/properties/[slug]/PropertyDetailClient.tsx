@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
   MapPin, 
   BedDouble, 
@@ -204,22 +205,27 @@ export default function PropertyDetailClient({ property, similarProperties }: Pr
       </div>
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-12">
-        {/* Photo Gallery Visual Section — 100% Authentic Natural Photography */}
+        {/* Photo Gallery Visual Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
           {/* Main Selected Image */}
-          <div className="lg:col-span-9 h-[380px] sm:h-[500px] rounded-3xl overflow-hidden relative bg-black shadow-luxury group">
-            <img
-              src={currentImage?.url}
-              alt={currentImage?.caption || property.title}
-              className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 ease-out"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-white">
+          <div className="lg:col-span-9 h-[380px] sm:h-[500px] rounded-3xl overflow-hidden relative bg-slate-950 shadow-slate-soft group">
+            {currentImage?.url && (
+              <Image
+                src={currentImage.url}
+                alt={currentImage?.caption || property.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 75vw"
+                className="object-cover group-hover:scale-103 transition-transform duration-500"
+                priority
+              />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-white z-10">
               <div className="space-y-1">
                 <div className="text-sm font-serif font-semibold drop-shadow-md">
                   {currentImage?.caption || property.title}
                 </div>
-                <div className="text-xs text-zinc-300 font-light">
+                <div className="text-xs text-slate-300 font-light">
                   Photo {activeImageIdx + 1} of {property.images.length}
                 </div>
               </div>
@@ -227,7 +233,7 @@ export default function PropertyDetailClient({ property, similarProperties }: Pr
               <button
                 type="button"
                 onClick={() => handleOpenLeadModal('Schedule Escorted Site Visit')}
-                className="px-5 py-2.5 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold text-xs uppercase tracking-wider transition-colors shadow-lg"
+                className="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-sm"
               >
                 Schedule Site Visit
               </button>
@@ -241,16 +247,18 @@ export default function PropertyDetailClient({ property, similarProperties }: Pr
                 key={idx}
                 type="button"
                 onClick={() => setActiveImageIdx(idx)}
-                className={`h-24 sm:h-28 rounded-2xl overflow-hidden border-2 transition-all relative ${
+                className={`h-24 sm:h-28 rounded-2xl overflow-hidden border-2 transition-all relative bg-slate-950 ${
                   activeImageIdx === idx
-                    ? 'border-black shadow-md scale-[1.02]'
-                    : 'border-transparent opacity-80 hover:opacity-100'
+                    ? 'border-teal-500 shadow-sm scale-[1.02]'
+                    : 'border-transparent opacity-75 hover:opacity-100'
                 }`}
               >
-                <img
+                <Image
                   src={img.url}
                   alt={img.caption || `Thumbnail ${idx + 1}`}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="150px"
+                  className="object-cover"
                 />
               </button>
             ))}
@@ -259,12 +267,12 @@ export default function PropertyDetailClient({ property, similarProperties }: Pr
 
         {/* 1. SIGNATURE L2H PROPERTY PERSPECTIVE (Fiduciary Advisory Block) */}
         {property.l2hPerspective && (
-          <div className="bg-[#09090b] text-white rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl space-y-8 relative overflow-hidden">
+          <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-xl space-y-8 relative overflow-hidden">
             <div className="relative z-10 space-y-6">
               {/* Header Badge */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
                 <div className="space-y-1">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-zinc-300 text-xs font-semibold uppercase tracking-wider">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-teal-300 text-xs font-semibold uppercase tracking-wider">
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>L2H Signature Property Perspective</span>
                   </div>
@@ -275,11 +283,11 @@ export default function PropertyDetailClient({ property, similarProperties }: Pr
 
                 {/* Best For Tags */}
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs text-zinc-400 font-semibold uppercase">Recommended For:</span>
+                  <span className="text-xs text-slate-400 font-semibold uppercase">Recommended For:</span>
                   {property.l2hPerspective.bestFor.map((tag, tIdx) => (
                     <span
                       key={tIdx}
-                      className="px-3 py-1 rounded-lg bg-white text-black font-bold text-xs uppercase tracking-wider shadow-sm"
+                      className="px-3 py-1 rounded-lg bg-teal-950 text-teal-300 border border-teal-700 font-bold text-xs uppercase tracking-wider"
                     >
                       {tag}
                     </span>
@@ -287,31 +295,31 @@ export default function PropertyDetailClient({ property, similarProperties }: Pr
                 </div>
               </div>
 
-              {/* 2-Column: What We Like vs What To Consider */}
+              {/* 2-Column: What We Would Investigate vs Questions to Resolve */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* What We Like */}
-                <div className="bg-[#121214] rounded-2xl p-6 border border-emerald-500/30 space-y-4">
-                  <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm uppercase tracking-wider">
+                {/* 1. What We Would Investigate */}
+                <div className="bg-slate-950/80 rounded-2xl p-6 border border-teal-500/30 space-y-4">
+                  <div className="flex items-center gap-2 text-teal-400 font-bold text-sm uppercase tracking-wider">
                     <CheckCircle2 className="w-4 h-4" />
-                    <span>What We Like</span>
+                    <span>What We Would Investigate</span>
                   </div>
-                  <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-300 leading-relaxed font-light">
+                  <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
                     {property.l2hPerspective.whatWeLike.map((pt, idx) => (
                       <li key={idx} className="flex items-start gap-2.5">
-                        <span className="text-emerald-400 font-bold mt-0.5">•</span>
+                        <span className="text-teal-400 font-bold mt-0.5">•</span>
                         <span>{pt}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* What To Consider */}
-                <div className="bg-[#121214] rounded-2xl p-6 border border-amber-500/30 space-y-4">
+                {/* 2. Questions to Resolve */}
+                <div className="bg-slate-950/80 rounded-2xl p-6 border border-amber-500/30 space-y-4">
                   <div className="flex items-center gap-2 text-amber-400 font-bold text-sm uppercase tracking-wider">
                     <AlertCircle className="w-4 h-4" />
-                    <span>What To Consider (Advisory Caution)</span>
+                    <span>Questions to Resolve Before Commitment</span>
                   </div>
-                  <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-300 leading-relaxed font-light">
+                  <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
                     {property.l2hPerspective.whatToConsider.map((pt, idx) => (
                       <li key={idx} className="flex items-start gap-2.5">
                         <span className="text-amber-400 font-bold mt-0.5">•</span>
@@ -556,33 +564,39 @@ export default function PropertyDetailClient({ property, similarProperties }: Pr
                 </p>
               </div>
 
-              {/* Advisor Card */}
-              <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200">
-                <img
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
-                  alt="Senior Advisor"
-                  className="w-12 h-12 rounded-full object-cover ring-2 ring-black"
-                />
-                <div>
-                  <div className="text-xs font-bold text-zinc-950">
-                    Vikram Malhotra
+              {/* Named Advisor / Agent Card */}
+              {property.advisorContact && (
+                <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-neutral dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700">
+                  <div className="w-12 h-12 rounded-full overflow-hidden relative ring-2 ring-accent shrink-0 bg-black">
+                    <Image
+                      src={property.advisorContact.photo}
+                      alt={property.advisorContact.name}
+                      fill
+                      sizes="48px"
+                      className="object-cover"
+                    />
                   </div>
-                  <div className="text-[10px] text-zinc-500">
-                    Principal Real Estate Strategist
-                  </div>
-                  <div className="text-[10px] text-emerald-600 font-semibold flex items-center gap-1 mt-0.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse" />
-                    <span>Available for Consultation</span>
+                  <div className="space-y-0.5 truncate">
+                    <div className="text-xs font-bold text-ink dark:text-white truncate">
+                      {property.advisorContact.name}
+                    </div>
+                    <div className="text-[10px] text-neutral-500 dark:text-neutral-400 truncate">
+                      {property.advisorContact.role}
+                    </div>
+                    <div className="text-[10px] text-accent font-semibold flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block animate-pulse" />
+                      <span>Available for Fiduciary Consultation</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               {/* Action Buttons */}
               <div className="space-y-3">
                 <button
                   type="button"
                   onClick={() => setIsScheduleVisitModalOpen(true)}
-                  className="w-full py-3.5 rounded-xl bg-black hover:bg-zinc-800 text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-md"
+                  className="w-full py-3.5 rounded-xl bg-accent hover:bg-yellow-400 text-black font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-gold-glow"
                 >
                   <Calendar className="w-4 h-4" />
                   <span>Schedule Private Site Visit</span>
@@ -592,9 +606,9 @@ export default function PropertyDetailClient({ property, similarProperties }: Pr
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-sm"
+                  className="w-full py-3.5 rounded-xl bg-charcoal-800 hover:bg-charcoal-700 text-white font-semibold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 border border-charcoal-700"
                 >
-                  <MessageSquare className="w-4 h-4 fill-current" />
+                  <MessageSquare className="w-4 h-4 text-accent" />
                   <span>Ask on WhatsApp</span>
                 </a>
 
@@ -603,25 +617,25 @@ export default function PropertyDetailClient({ property, similarProperties }: Pr
                   onClick={handleToggleCompare}
                   className={`w-full py-3 rounded-xl font-semibold text-xs transition-colors flex items-center justify-center gap-2 border ${
                     isCompared
-                      ? 'bg-black text-white border-black'
-                      : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-900 border-zinc-200'
+                      ? 'bg-accent text-black font-bold border-accent shadow-gold-glow'
+                      : 'bg-neutral hover:bg-neutral-200 dark:bg-charcoal-800 dark:hover:bg-charcoal-700 text-ink dark:text-neutral-200 border-neutral-200 dark:border-charcoal-700'
                   }`}
                 >
-                  <Scale className="w-4 h-4" />
+                  <Scale className="w-4 h-4 text-accent" />
                   <span>{isCompared ? '✓ Added to Compare' : '+ Compare with Similar'}</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => handleOpenLeadModal('Request Price & Floor Plan PDF')}
-                  className="w-full py-3 rounded-xl bg-zinc-900 hover:bg-black text-white font-semibold text-xs transition-colors flex items-center justify-center gap-2"
+                  className="w-full py-3 rounded-xl bg-white dark:bg-charcoal-900 hover:bg-neutral-50 dark:hover:bg-charcoal-800 text-ink dark:text-neutral-200 border border-neutral-300 dark:border-charcoal-700 font-semibold text-xs transition-colors flex items-center justify-center gap-2"
                 >
-                  <FileText className="w-4 h-4 text-zinc-400" />
+                  <FileText className="w-4 h-4 text-accent" />
                   <span>Request Full PDF Dossier</span>
                 </button>
               </div>
 
-              <div className="pt-2 text-[11px] text-center text-zinc-400 font-light">
+              <div className="pt-2 text-[11px] text-center text-neutral-400 font-light">
                 🔒 Strict fiduciary confidentiality. Zero spam.
               </div>
             </div>

@@ -10,7 +10,7 @@
       "priceDisplay": "₹9.20 Cr onwards",
       "pricePerSqFt": 15333,
       "propertyType": "Apartment",
-      "category": "Luxury Properties",
+      "category": "residential",
       "configuration": "4 BHK Sky Villa + 2 Staff Quarters",
       "bedrooms": 4,
       "bathrooms": 5,
@@ -249,7 +249,23 @@
       "viewsCount": 1428,
       "leadsCount": 38,
       "createdAt": "2026-01-15T09:00:00.000Z",
-      "updatedAt": "2026-08-10T14:30:00.000Z"
+      "updatedAt": "2026-08-10T14:30:00.000Z",
+      "isPremium": true,
+      "carpetAreaSqFt": 4850,
+      "developerName": "ATS Infrastructure Ltd",
+      "advisorContact": {
+        "name": "Ananya Deshmukh",
+        "role": "Director — Prime Residential & Luxury Estates",
+        "photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+        "phone": "+91 98765 43211",
+        "email": "ananya.deshmukh@l2hsolution.com"
+      },
+      "gallery": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
+      ]
     },
     {
       "id": "prop-2",
@@ -261,7 +277,7 @@
       "priceDisplay": "₹2.15 Cr onwards",
       "pricePerSqFt": 10000,
       "propertyType": "Apartment",
-      "category": "Apartments",
+      "category": "residential",
       "configuration": "3 BHK + Utility / 4 BHK Grand",
       "bedrooms": 3,
       "bathrooms": 3,
@@ -444,7 +460,23 @@
       "viewsCount": 2180,
       "leadsCount": 64,
       "createdAt": "2026-02-01T10:00:00.000Z",
-      "updatedAt": "2026-08-12T11:00:00.000Z"
+      "updatedAt": "2026-08-12T11:00:00.000Z",
+      "isPremium": false,
+      "carpetAreaSqFt": 1680,
+      "developerName": "Godrej Properties Ltd",
+      "advisorContact": {
+        "name": "Ananya Deshmukh",
+        "role": "Director — Prime Residential & Luxury Estates",
+        "photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+        "phone": "+91 98765 43211",
+        "email": "ananya.deshmukh@l2hsolution.com"
+      },
+      "gallery": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
+      ]
     },
     {
       "id": "prop-3",
@@ -456,7 +488,7 @@
       "priceDisplay": "₹45.00 Cr onwards",
       "pricePerSqFt": 60810,
       "propertyType": "Penthouse",
-      "category": "Luxury Properties",
+      "category": "residential",
       "configuration": "5 BHK Grand Presidential Penthouse",
       "bedrooms": 5,
       "bathrooms": 6,
@@ -619,12 +651,28 @@
           "isFeatured": true
         }
       ],
-      "isFeatured": true,
+      "isFeatured": false,
       "status": "Active",
       "viewsCount": 3890,
       "leadsCount": 22,
       "createdAt": "2026-01-10T08:00:00.000Z",
-      "updatedAt": "2026-08-15T12:00:00.000Z"
+      "updatedAt": "2026-08-15T12:00:00.000Z",
+      "isPremium": true,
+      "carpetAreaSqFt": 6100,
+      "developerName": "DLF Limited",
+      "advisorContact": {
+        "name": "Ananya Deshmukh",
+        "role": "Director — Prime Residential & Luxury Estates",
+        "photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+        "phone": "+91 98765 43211",
+        "email": "ananya.deshmukh@l2hsolution.com"
+      },
+      "gallery": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
+      ]
     },
     {
       "id": "prop-4",
@@ -636,7 +684,7 @@
       "priceDisplay": "₹1.85 Cr onwards",
       "pricePerSqFt": 9250,
       "propertyType": "Office",
-      "category": "Commercial",
+      "category": "commercial",
       "configuration": "Grade-A Lockable Office Suite (2,000 sq.ft.)",
       "superArea": 2000,
       "carpetArea": 1450,
@@ -796,7 +844,25 @@
       "viewsCount": 2950,
       "leadsCount": 52,
       "createdAt": "2026-02-10T11:00:00.000Z",
-      "updatedAt": "2026-08-16T15:00:00.000Z"
+      "updatedAt": "2026-08-16T15:00:00.000Z",
+      "expectedRentalYieldPct": 8.2,
+      "leaseStatus": "Pre-leased",
+      "tenantName": "Grade-A Corporate / Multi-Brand Anchor",
+      "ticketSize": "₹1.85 Cr onwards",
+      "appreciationThesis": "High-density tech corridor with sustained rental absorption",
+      "advisorContact": {
+        "name": "Siddharth Oberoi",
+        "role": "Managing Director — Commercial Yield & Institutional Assets",
+        "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+        "phone": "+91 98765 43212",
+        "email": "siddharth.oberoi@l2hsolution.com"
+      },
+      "gallery": [
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80"
+      ]
     },
     {
       "id": "prop-5",
@@ -808,7 +874,7 @@
       "priceDisplay": "₹95 Lakhs onwards",
       "pricePerSqFt": 4222,
       "propertyType": "Plot",
-      "category": "Plots",
+      "category": "plots",
       "configuration": "250 sq.yd. Freehold Villa Plot",
       "superArea": 2250,
       "carpetArea": 2250,
@@ -962,7 +1028,25 @@
       "viewsCount": 3100,
       "leadsCount": 71,
       "createdAt": "2026-02-15T09:30:00.000Z",
-      "updatedAt": "2026-08-17T10:00:00.000Z"
+      "updatedAt": "2026-08-17T10:00:00.000Z",
+      "titleType": "Freehold",
+      "state": "Uttar Pradesh",
+      "plotSizeSqYd": 250,
+      "ratePerSqYd": 38000,
+      "nearestInfra": "12 km from Jewar International Airport",
+      "advisorContact": {
+        "name": "Vikram Malhotra",
+        "role": "Principal Partner — Land & High-Growth Corridors",
+        "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+        "phone": "+91 98765 43210",
+        "email": "vikram.malhotra@l2hsolution.com"
+      },
+      "gallery": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
+      ]
     },
     {
       "id": "prop-6",
@@ -974,7 +1058,7 @@
       "priceDisplay": "₹8.50 Cr onwards",
       "pricePerSqFt": 1951,
       "propertyType": "Farmhouse",
-      "category": "Farmhouses",
+      "category": "plots",
       "configuration": "1 Acre Freehold Gated Country Estate",
       "superArea": 43560,
       "areaUnit": "Acres",
@@ -1126,7 +1210,25 @@
       "viewsCount": 2450,
       "leadsCount": 29,
       "createdAt": "2026-03-01T12:00:00.000Z",
-      "updatedAt": "2026-08-18T09:00:00.000Z"
+      "updatedAt": "2026-08-18T09:00:00.000Z",
+      "titleType": "Freehold",
+      "state": "Haryana",
+      "plotSizeSqYd": 4840,
+      "ratePerSqYd": 17562,
+      "nearestInfra": "Direct National Highway & Expressway Link",
+      "advisorContact": {
+        "name": "Vikram Malhotra",
+        "role": "Principal Partner — Land & High-Growth Corridors",
+        "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+        "phone": "+91 98765 43210",
+        "email": "vikram.malhotra@l2hsolution.com"
+      },
+      "gallery": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
+      ]
     },
     {
       "id": "prop-7",
@@ -1138,7 +1240,7 @@
       "priceDisplay": "₹7.80 Cr",
       "pricePerSqFt": 22285,
       "propertyType": "Villa",
-      "category": "Villas",
+      "category": "residential",
       "configuration": "4 BHK Private Pool Villa + Staff Suite",
       "bedrooms": 4,
       "bathrooms": 5,
@@ -1294,12 +1396,28 @@
           "isFeatured": false
         }
       ],
-      "isFeatured": true,
+      "isFeatured": false,
       "status": "Active",
       "viewsCount": 3120,
       "leadsCount": 42,
       "createdAt": "2026-03-10T12:00:00.000Z",
-      "updatedAt": "2026-08-18T09:00:00.000Z"
+      "updatedAt": "2026-08-18T09:00:00.000Z",
+      "isPremium": true,
+      "carpetAreaSqFt": 2950,
+      "developerName": "Solstice Luxury Living Goa",
+      "advisorContact": {
+        "name": "Ananya Deshmukh",
+        "role": "Director — Prime Residential & Luxury Estates",
+        "photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+        "phone": "+91 98765 43211",
+        "email": "ananya.deshmukh@l2hsolution.com"
+      },
+      "gallery": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
+      ]
     },
     {
       "id": "prop-8",
@@ -1311,7 +1429,7 @@
       "priceDisplay": "₹2.45 Cr",
       "pricePerSqFt": 10652,
       "propertyType": "Villa",
-      "category": "Villas",
+      "category": "residential",
       "configuration": "3 BHK Ganga View Villa + Meditation Deck",
       "bedrooms": 3,
       "bathrooms": 4,
@@ -1467,12 +1585,28 @@
           "isFeatured": false
         }
       ],
-      "isFeatured": true,
+      "isFeatured": false,
       "status": "Active",
       "viewsCount": 2780,
       "leadsCount": 38,
       "createdAt": "2026-03-12T12:00:00.000Z",
-      "updatedAt": "2026-08-18T09:00:00.000Z"
+      "updatedAt": "2026-08-18T09:00:00.000Z",
+      "isPremium": true,
+      "carpetAreaSqFt": 1920,
+      "developerName": "Himalayan Foothills Living",
+      "advisorContact": {
+        "name": "Ananya Deshmukh",
+        "role": "Director — Prime Residential & Luxury Estates",
+        "photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+        "phone": "+91 98765 43211",
+        "email": "ananya.deshmukh@l2hsolution.com"
+      },
+      "gallery": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
+      ]
     },
     {
       "id": "prop-9",
@@ -1484,7 +1618,7 @@
       "priceDisplay": "₹1.65 Cr",
       "pricePerSqFt": 7857,
       "propertyType": "Villa",
-      "category": "Villas",
+      "category": "residential",
       "configuration": "3 BHK Himalayan Lakeview Chalet",
       "bedrooms": 3,
       "bathrooms": 3,
@@ -1640,12 +1774,28 @@
           "isFeatured": false
         }
       ],
-      "isFeatured": true,
+      "isFeatured": false,
       "status": "Active",
       "viewsCount": 2190,
       "leadsCount": 31,
       "createdAt": "2026-03-15T12:00:00.000Z",
-      "updatedAt": "2026-08-18T09:00:00.000Z"
+      "updatedAt": "2026-08-18T09:00:00.000Z",
+      "isPremium": true,
+      "carpetAreaSqFt": 1750,
+      "developerName": "Garhwal Eco-Living Developments",
+      "advisorContact": {
+        "name": "Ananya Deshmukh",
+        "role": "Director — Prime Residential & Luxury Estates",
+        "photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+        "phone": "+91 98765 43211",
+        "email": "ananya.deshmukh@l2hsolution.com"
+      },
+      "gallery": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
+      ]
     },
     {
       "id": "prop-10",
@@ -1657,7 +1807,7 @@
       "priceDisplay": "₹3.85 Cr",
       "pricePerSqFt": 5895,
       "propertyType": "Plot",
-      "category": "Villas",
+      "category": "plots",
       "configuration": "4 BHK Stone Homestead + 1.5 Acre Gated Orchard",
       "bedrooms": 4,
       "bathrooms": 5,
@@ -1813,12 +1963,30 @@
           "isFeatured": false
         }
       ],
-      "isFeatured": true,
+      "isFeatured": false,
       "status": "Active",
       "viewsCount": 2640,
       "leadsCount": 35,
       "createdAt": "2026-03-18T12:00:00.000Z",
-      "updatedAt": "2026-08-18T09:00:00.000Z"
+      "updatedAt": "2026-08-18T09:00:00.000Z",
+      "titleType": "Freehold",
+      "state": "Uttarakhand",
+      "plotSizeSqYd": 7260,
+      "ratePerSqYd": 5303,
+      "nearestInfra": "Direct National Highway & Expressway Link",
+      "advisorContact": {
+        "name": "Vikram Malhotra",
+        "role": "Principal Partner — Land & High-Growth Corridors",
+        "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+        "phone": "+91 98765 43210",
+        "email": "vikram.malhotra@l2hsolution.com"
+      },
+      "gallery": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
+      ]
     },
     {
       "id": "prop-11",
@@ -1830,7 +1998,7 @@
       "priceDisplay": "₹85 Lakhs",
       "pricePerSqFt": 4722,
       "propertyType": "Villa",
-      "category": "Villas",
+      "category": "plots",
       "configuration": "3 BHK Smart Living Villa",
       "bedrooms": 3,
       "bathrooms": 3,
@@ -1985,12 +2153,174 @@
           "isFeatured": false
         }
       ],
-      "isFeatured": true,
+      "isFeatured": false,
       "status": "Active",
       "viewsCount": 3850,
       "leadsCount": 54,
       "createdAt": "2026-03-20T12:00:00.000Z",
-      "updatedAt": "2026-08-18T09:00:00.000Z"
+      "updatedAt": "2026-08-18T09:00:00.000Z",
+      "titleType": "Freehold",
+      "state": "Gujarat",
+      "plotSizeSqYd": 200,
+      "ratePerSqYd": 42500,
+      "nearestInfra": "Dholera International Airport & Expressway Node",
+      "advisorContact": {
+        "name": "Vikram Malhotra",
+        "role": "Principal Partner — Land & High-Growth Corridors",
+        "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+        "phone": "+91 98765 43210",
+        "email": "vikram.malhotra@l2hsolution.com"
+      },
+      "gallery": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
+      ]
+    },
+    {
+      "id": "prop-12",
+      "slug": "m3m-broadway-preleased-retail-gurgaon",
+      "title": "M3M Broadway Pre-Leased High Street Retail",
+      "tagline": "Pre-Leased Commercial Grade-A Retail Anchored by Leading Brands on Golf Course Ext Road",
+      "description": "M3M Broadway represents a premier commercial high-street retail destination in Sector 71, Gurgaon. Designed with double-height retail boulevards, seamless connectivity to Southern Peripheral Road (SPR), and pre-leased to Grade-A anchor retail and F&B brands offering immediate rental yield and capital upside.",
+      "price": 14500000,
+      "priceDisplay": "₹1.45 Cr onwards",
+      "pricePerSqFt": 24166,
+      "propertyType": "Retail",
+      "category": "commercial",
+      "configuration": "Grade-A High Street Retail",
+      "superArea": 600,
+      "carpetArea": 420,
+      "areaUnit": "sq.ft.",
+      "possessionStatus": "Ready to Move",
+      "possessionDate": "Operational",
+      "reraNumber": "HRERA-PKL-GGM-1025-2019",
+      "verificationStatus": "Verified",
+      "lastUpdated": "August 2026",
+      "developer": {
+        "name": "M3M Group",
+        "logo": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=120&q=80",
+        "experienceYears": 22,
+        "totalProjects": 38,
+        "description": "Leading luxury commercial and residential developer across Millennium City Gurugram."
+      },
+      "location": {
+        "address": "Sector 71, Golf Course Extension Road",
+        "locality": "Sector 71",
+        "sector": "Sector 71",
+        "city": "Gurgaon",
+        "state": "Haryana",
+        "pincode": "122004",
+        "latitude": 28.4112,
+        "longitude": 77.0321,
+        "landmark": "Directly on SPR & 150m wide Golf Course Extension Road"
+      },
+      "highlights": [
+        "Immediate rental cash flow from Day 1 with 9-year corporate lock-in",
+        "Over 50,000 captive affluent residential households in 3 km radius",
+        "Massive 600-foot wide road frontage with high footfall visibility",
+        "Triple-height grand entrance and central open-air plazas"
+      ],
+      "l2hPerspective": {
+        "bestFor": [
+          "Investment",
+          "Commercial"
+        ],
+        "whatWeLike": [
+          "Pre-leased commercial asset with 7.8% net entry yield and clear rent escalation clauses",
+          "Prime location on Golf Course Extension Road connecting SPR, Sohna Road, and NH-48",
+          "Surrounded by premium high-density luxury residential catchment driving continuous weekend footfall"
+        ],
+        "whatToConsider": [
+          "Retail asset returns depend on tenant sales velocity and long-term brand retention",
+          "Secondary parking management during peak weekend hours requires regular facility upkeep"
+        ],
+        "locationAssessment": "Strategic commercial junction on SPR with uninterrupted access to Gurgaon Cyber Hub and IGI Airport.",
+        "valueAssessment": "Priced at ₹24,000/sq.ft. with pre-leased anchor tenants offering competitive spread over fixed deposit and bond yields.",
+        "connectivityAssessment": "Rapid Metro extension planned along SPR; 25 minutes to IGI Airport.",
+        "investmentSuitability": "Ideal for investors seeking immediate, inflation-hedged monthly rental cash flow with capital appreciation.",
+        "suitabilityScore": {
+          "endUseScore": 6.5,
+          "investmentScore": 9.4,
+          "rentalScore": 9.6
+        }
+      },
+      "investmentView": {
+        "entryPrice": 14500000,
+        "pricePerSqFt": 24166,
+        "expectedAnnualAppreciationPercent": 12,
+        "estimatedRentalYieldPercent": 7.8,
+        "estimatedMonthlyRental": 95000,
+        "holdingPeriodYears": 5,
+        "demandDrivers": [
+          "Dense surrounding residential micro-markets in Sector 70, 71, 72, and 73",
+          "Corporate commercial spillover from Golf Course Road",
+          "Upcoming Cloverleaf flyover integration"
+        ],
+        "comparableProjects": [
+          {
+            "name": "AIPL Joy Central",
+            "locality": "Sector 65 Gurgaon",
+            "pricePerSqFt": 28000,
+            "possessionStatus": "Ready"
+          }
+        ],
+        "liquidityRating": "High",
+        "exitStrategies": [
+          "Secondary resale to HNI yield investors",
+          "Fractional institutional rollup"
+        ],
+        "risks": [
+          "Anchor tenant renewal risk after initial lock-in period"
+        ],
+        "disclaimer": "Yields and rentals are verified against executed registered lease deeds."
+      },
+      "floorPlans": [
+        {
+          "title": "Ground Floor High-Street Retail Unit",
+          "bhk": "Commercial",
+          "superArea": "600 sq.ft.",
+          "carpetArea": "420 sq.ft.",
+          "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+          "price": "₹1.45 Cr"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+          "caption": "M3M Broadway Commercial High Street",
+          "isFeatured": true
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+          "caption": "Retail Boulevard & Plaza"
+        }
+      ],
+      "isFeatured": true,
+      "status": "Active",
+      "viewsCount": 1450,
+      "leadsCount": 38,
+      "createdAt": "2026-08-01T00:00:00.000Z",
+      "updatedAt": "2026-08-24T00:00:00.000Z",
+      "expectedRentalYieldPct": 7.8,
+      "leaseStatus": "Pre-leased",
+      "tenantName": "Leading Anchor Retail & F&B Chain",
+      "ticketSize": "₹1.45 Cr onwards",
+      "appreciationThesis": "Dense luxury residential catchment driving high retail footfall along Golf Course Ext Road",
+      "advisorContact": {
+        "name": "Siddharth Oberoi",
+        "role": "Managing Director — Commercial Yield & Institutional Assets",
+        "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+        "phone": "+91 98765 43212",
+        "email": "siddharth.oberoi@l2hsolution.com"
+      },
+      "gallery": [
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80"
+      ]
     }
   ],
   "leads": [
@@ -2678,7 +3008,7 @@
       "name": "Ananya Sharma",
       "role": "Commercial & Institutional Advisor",
       "email": "ananya.s@l2hsolution.com",
-      "phone": "+91 98765 43210",
+      "phone": "+91 8439654385",
       "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80",
       "bio": "Specialist in Grade-A commercial leasing, pre-leased yields, and capital deployment across expressway tech parks.",
       "specialization": [

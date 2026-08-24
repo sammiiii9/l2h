@@ -8,6 +8,7 @@ interface LeadModalProps {
   isOpen: boolean;
   onClose: () => void;
   property?: Property | null;
+  propertyTitle?: string;
   initialPurpose?: string;
   title?: string;
   subtitle?: string;
@@ -17,20 +18,26 @@ export default function LeadModal({
   isOpen,
   onClose,
   property,
+  propertyTitle,
   initialPurpose = 'End Use',
   title,
   subtitle
 }: LeadModalProps) {
+  const effectiveTitle = title || propertyTitle || property?.title;
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
-    preferredLocation: property?.location.locality || 'Noida / Delhi NCR',
+    preferredLocation: property?.location?.locality || 'Noida / Delhi NCR',
     propertyType: property?.propertyType || 'Apartment',
     budgetDisplay: property?.priceDisplay || '₹1 - 3 Cr',
     purpose: initialPurpose,
     preferredContactMethod: 'WhatsApp',
-    message: property ? `Interested in ${property.title}. Please share floor plans, pricing sheets, and site visit availability.` : ''
+    message: property 
+      ? `Interested in ${property.title}. Please share floor plans, pricing sheets, and site visit availability.` 
+      : effectiveTitle 
+      ? `Inquiring regarding: ${effectiveTitle}. Please share full advisory dossier and availability.`
+      : ''
   });
 
   const [loading, setLoading] = useState(false);
@@ -171,7 +178,7 @@ export default function LeadModal({
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 8439654385"
                       className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-black border border-white/15 focus:border-white focus:outline-none text-white text-xs placeholder-zinc-500 transition-colors"
                     />
                   </div>
@@ -243,7 +250,7 @@ export default function LeadModal({
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3.5 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors disabled:opacity-50 shadow-sm"
+                className="w-full py-3.5 rounded-xl bg-accent hover:bg-yellow-400 text-black font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors disabled:opacity-50 shadow-gold-glow"
               >
                 {loading ? (
                   <>

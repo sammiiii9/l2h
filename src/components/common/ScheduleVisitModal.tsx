@@ -189,7 +189,7 @@ export default function ScheduleVisitModal({
                       required
                       value={clientPhone}
                       onChange={(e) => setClientPhone(e.target.value)}
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 8439654385"
                       className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-black border border-white/15 text-white placeholder-zinc-500 text-xs focus:border-white focus:outline-none"
                     />
                   </div>

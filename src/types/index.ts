@@ -1,16 +1,17 @@
 export type PropertyCategory = 
+  | 'plots'
+  | 'residential'
+  | 'commercial'
+  | 'Plots'
+  | 'Residential'
+  | 'Commercial'
   | 'Homes'
   | 'Apartments'
   | 'Villas'
-  | 'Plots'
   | 'Land'
-  | 'Farmhouses'
-  | 'Studios'
-  | 'Commercial'
-  | 'Offices'
-  | 'Retail'
   | 'Investments'
-  | 'Luxury Properties';
+  | 'Luxury Properties'
+  | 'Farmhouses';
 
 export type PropertyType =
   | 'Apartment'
@@ -242,6 +243,28 @@ export interface Property {
   leadsCount: number;
   createdAt: string;
   updatedAt: string;
+
+  // 3-Category Specific Metadata
+  plotSizeSqYd?: number;
+  ratePerSqYd?: number;
+  titleType?: 'Freehold' | 'Leasehold';
+  nearestInfra?: string;
+  isPremium?: boolean;
+  carpetAreaSqFt?: number;
+  developerName?: string;
+  expectedRentalYieldPct?: number;
+  leaseStatus?: 'Pre-leased' | 'Vacant' | 'Ready for Lease';
+  tenantName?: string;
+  ticketSize?: string;
+  appreciationThesis?: string;
+  gallery?: string[];
+  advisorContact?: {
+    name: string;
+    role: string;
+    photo: string;
+    phone: string;
+    email: string;
+  };
 }
 
 export type LeadStatus =
