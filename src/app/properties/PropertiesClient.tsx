@@ -116,42 +116,46 @@ export default function PropertiesClient() {
   const isResidential = category.toLowerCase() === 'residential';
   const isCommercial = category.toLowerCase() === 'commercial';
 
-  let pageTitle = 'Verified Property Portfolio';
-  let pageSubtitle = 'Scrutinized luxury apartments, freehold plots, and high-yield commercial assets across Delhi NCR and high-growth corridors.';
-  let firstQuestion = 'Which opportunity aligns with your capital horizon, ownership timeline, and liquidity risk?';
-  let evidenceFocus = 'Title verification, layout efficiency, actual registry benchmarks, and builder balance sheets.';
+  let pageTitle = 'Explore Properties Your Way';
+  let pageSubtitle = 'Different goals require different properties. Explore opportunities by destination, purpose and property type.';
+  let firstQuestion = 'Which opportunity aligns with your purpose, budget, and long-term horizon?';
+  let evidenceFocus = 'Title verification, exact boundary demarcation, registry records, and verified infrastructure access.';
 
-  if (isPlot) {
-    pageTitle = 'Plots & Land Parcels';
-    pageSubtitle = 'Research-led plot opportunities across India, with location, title, approval, and exit considerations made visible.';
-    firstQuestion = 'Is the title clean, the master plan zoning approved, and the timeline realistic for holding or exit?';
-    evidenceFocus = '30-year chain title, registry records, authority master plan, and actual possession status.';
-  } else if (isResidential) {
-    pageTitle = 'Residential Apartments';
-    pageSubtitle = 'Apartments framed around daily life, connectivity, builder context, ownership fit, and current availability.';
-    firstQuestion = 'Does the home work for daily life, ownership costs, and the actual possession window?';
-    evidenceFocus = 'Current inventory, cost sheet, plan efficiency, possession condition, and comparable supply.';
-  } else if (isCommercial) {
-    pageTitle = 'Commercial Investment';
-    pageSubtitle = 'Commercial opportunities assessed through tenant quality, rental structure, location demand, resale potential, and appreciation logic.';
-    firstQuestion = 'Is lease context, demand driver, and future liquidity strong enough for the income thesis?';
-    evidenceFocus = 'Tenant and lease evidence, lock-in, demand, vacancy risk, and likely exit buyer.';
+  if (category.toLowerCase().includes('sacred') || category.toLowerCase().includes('spiritual')) {
+    pageTitle = 'Sacred & Spiritual Destinations';
+    pageSubtitle = 'Plotted developments near revered pilgrimage shrines starting from ₹9 Lakhs for 100 sq. yards.';
+    firstQuestion = 'Is the location peaceful, accessible, and grounded in clear freehold title?';
+    evidenceFocus = 'Boundary demarcation, temple corridor road access, and clear mutation deeds.';
+  } else if (category.toLowerCase().includes('holiday') || category.toLowerCase().includes('leisure')) {
+    pageTitle = 'Holiday & Leisure Destinations';
+    pageSubtitle = 'Lifestyle and vacation plotted opportunities in Goa starting from ₹35 Lakhs for 100 sq. yards.';
+    firstQuestion = 'Does the property offer lifestyle appeal, tourism demand, and second-home tranquility?';
+    evidenceFocus = 'Settlement zoning, airport connectivity, and green belt surroundings.';
+  } else if (category.toLowerCase().includes('industrial') || category.toLowerCase().includes('growth')) {
+    pageTitle = 'Industrial & Growth Corridors';
+    pageSubtitle = 'Plotted developments in planned smart hubs like Dholera SIR starting from ₹10 Lakhs for 100 sq. yards.';
+    firstQuestion = 'Are you prepared for a 5-8+ year infrastructure gestation timeline for maximum capital appreciation?';
+    evidenceFocus = 'TP scheme compliance, expressway connectivity, and government master plan progress.';
+  } else if (category.toLowerCase().includes('residential') || category.toLowerCase().includes('noida')) {
+    pageTitle = 'Find Your Home in Noida';
+    pageSubtitle = 'Residential properties in Noida starting from ₹80 Lakhs, spanning ready-to-move, under-construction, and off-plan.';
+    firstQuestion = 'Does the layout, possession timeline, and sector infrastructure match your family lifestyle?';
+    evidenceFocus = 'Carpet area efficiency, builder delivery solvency, and metro proximity.';
   }
 
   return (
-    <div className="bg-neutral dark:bg-black text-ink dark:text-neutral-100 min-h-screen py-10 transition-colors duration-200">
+    <div className="bg-[#F5F1EB] dark:bg-[#0E0D0C] text-[#171513] dark:text-[#F5F1EB] min-h-screen py-10 transition-colors duration-200">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Page Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-neutral-200 dark:border-charcoal-800">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-black/10 dark:border-white/10">
           <div className="space-y-1 max-w-3xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-amber-50 dark:bg-charcoal-800 border border-amber-200 dark:border-charcoal-700 text-amber-800 dark:text-accent text-[11px] font-semibold uppercase tracking-wider mb-1">
-              <Sparkles className="w-3 h-3 fill-current" />
-              <span>Buyer-Side Decision Portfolio</span>
+            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 text-[#B8945B] text-[11px] font-semibold uppercase tracking-wider mb-1">
+              <span>L2H Solution • Property Discovery</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-serif font-bold text-ink dark:text-white">
+            <h1 className="text-3xl sm:text-4xl font-serif font-normal text-[#171513] dark:text-white">
               {pageTitle}
             </h1>
-            <p className="text-xs sm:text-sm text-neutral-700 dark:text-white font-normal leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#171513]/75 dark:text-white/75 font-light leading-relaxed">
               {pageSubtitle}
             </p>
           </div>
@@ -166,8 +170,8 @@ export default function PropertiesClient() {
                 setSearch(e.target.value);
                 updateQuery('search', e.target.value);
               }}
-              placeholder="Search project, locality, developer..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white dark:bg-charcoal-900 border border-neutral-200 dark:border-charcoal-700 focus:outline-none focus:ring-2 focus:ring-accent text-xs font-medium text-ink dark:text-white shadow-sm"
+              placeholder="Search destination, category, city..."
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white dark:bg-[#171513] border border-black/10 dark:border-white/15 focus:outline-none focus:border-[#B8945B] text-xs font-medium text-[#171513] dark:text-white shadow-sm"
             />
             {search && (
               <button
@@ -183,22 +187,48 @@ export default function PropertiesClient() {
           </div>
         </div>
 
-        {/* Category Evidence Rail */}
-        <div className="bg-white dark:bg-charcoal-900 rounded-2xl p-4 sm:p-5 border border-neutral-200 dark:border-charcoal-800 shadow-luxury-soft flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        {/* Quick Category Switcher Tabs */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+          {[
+            { id: 'All', label: 'All Opportunities' },
+            { id: 'Sacred & Spiritual Destinations', label: 'Sacred Destinations (from ₹9L)' },
+            { id: 'Industrial & Growth Corridors', label: 'Industrial & Growth (from ₹10L)' },
+            { id: 'Holiday & Leisure Destinations', label: 'Holiday & Leisure (from ₹35L)' },
+            { id: 'Residential Properties — Noida', label: 'Noida Residential (from ₹80L)' }
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => {
+                setCategory(tab.id);
+                updateQuery('category', tab.id);
+              }}
+              className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+                category === tab.id
+                  ? 'bg-[#171513] dark:bg-white text-white dark:text-[#171513] shadow-md'
+                  : 'bg-white dark:bg-[#171513] text-[#171513]/70 dark:text-white/70 border border-black/5 dark:border-white/10 hover:border-[#B8945B]'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Advisory Evidence Rail */}
+        <div className="bg-white dark:bg-[#171513] rounded-2xl p-4 sm:p-5 border border-black/5 dark:border-white/10 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="space-y-0.5">
-            <span className="text-[10px] uppercase tracking-wider font-bold text-amber-700 dark:text-accent block">
-              Primary Advisory Question to Test:
+            <span className="text-[10px] uppercase tracking-wider font-semibold text-[#B8945B] block">
+              Advisory Evaluation Focus:
             </span>
-            <p className="text-xs sm:text-sm font-serif italic text-ink dark:text-white font-medium">
+            <p className="text-xs sm:text-sm font-serif italic text-[#171513] dark:text-white font-normal">
               &ldquo;{firstQuestion}&rdquo;
             </p>
           </div>
 
           <div className="text-left md:text-right space-y-0.5 shrink-0">
-            <span className="text-[10px] uppercase tracking-wider font-bold text-amber-700 dark:text-accent block">
-              Evidence Emphasis:
+            <span className="text-[10px] uppercase tracking-wider font-semibold text-[#B8945B] block">
+              Verification Standards:
             </span>
-            <p className="text-xs text-neutral-700 dark:text-white font-medium">
+            <p className="text-xs text-[#171513]/70 dark:text-white/70 font-light">
               {evidenceFocus}
             </p>
           </div>
@@ -207,10 +237,10 @@ export default function PropertiesClient() {
         {/* Main Content Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
           {/* Desktop Filter Sidebar */}
-          <div className="hidden lg:block bg-white dark:bg-charcoal-900 rounded-3xl p-6 border border-neutral-200 dark:border-charcoal-800 shadow-luxury-soft space-y-6 sticky top-24">
-            <div className="flex items-center justify-between pb-4 border-b border-neutral-100 dark:border-charcoal-800">
-              <span className="text-xs uppercase tracking-wider font-bold text-ink dark:text-white flex items-center gap-1.5">
-                <SlidersHorizontal className="w-3.5 h-3.5 text-amber-700 dark:text-accent" />
+          <div className="hidden lg:block bg-white dark:bg-[#171513] rounded-3xl p-6 border border-black/5 dark:border-white/10 shadow-sm space-y-6 sticky top-24">
+            <div className="flex items-center justify-between pb-4 border-b border-black/5 dark:border-white/10">
+              <span className="text-xs uppercase tracking-wider font-semibold text-[#171513] dark:text-white flex items-center gap-1.5">
+                <SlidersHorizontal className="w-3.5 h-3.5 text-[#B8945B]" />
                 <span>Filters &amp; Criteria</span>
               </span>
 
@@ -218,7 +248,7 @@ export default function PropertiesClient() {
                 <button
                   type="button"
                   onClick={handleResetFilters}
-                  className="text-[11px] text-amber-700 dark:text-accent font-semibold hover:underline flex items-center gap-1"
+                  className="text-[11px] text-[#B8945B] font-semibold hover:underline flex items-center gap-1"
                 >
                   <RotateCcw className="w-3 h-3" />
                   <span>Reset</span>
@@ -228,8 +258,8 @@ export default function PropertiesClient() {
 
             {/* Category Filter */}
             <div className="space-y-2">
-              <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
-                Primary Category
+              <label className="block text-xs font-semibold text-[#171513] dark:text-white uppercase tracking-wider">
+                Purpose &amp; Category
               </label>
               <select
                 value={category}
@@ -237,19 +267,39 @@ export default function PropertiesClient() {
                   setCategory(e.target.value);
                   updateQuery('category', e.target.value);
                 }}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none cursor-pointer"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F1EB] dark:bg-[#26211D] border border-black/10 dark:border-white/10 text-xs font-medium text-[#171513] dark:text-white focus:border-[#B8945B] focus:outline-none cursor-pointer"
               >
                 <option value="All">All Portfolios</option>
-                <option value="plots">Plots &amp; Land — Pan India</option>
-                <option value="residential">Residential Apartments</option>
-                <option value="commercial">Commercial Investment</option>
+                <option value="Sacred & Spiritual Destinations">Sacred &amp; Spiritual Destinations</option>
+                <option value="Industrial & Growth Corridors">Industrial &amp; Growth Corridors</option>
+                <option value="Holiday & Leisure Destinations">Holiday &amp; Leisure Destinations</option>
+                <option value="Residential Properties — Noida">Residential Properties — Noida</option>
               </select>
             </div>
 
-            {/* City */}
+            {/* Property Type */}
             <div className="space-y-2">
-              <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
-                City / Region
+              <label className="block text-xs font-semibold text-[#171513] dark:text-white uppercase tracking-wider">
+                Property Type
+              </label>
+              <select
+                value={propertyType}
+                onChange={(e) => {
+                  setPropertyType(e.target.value);
+                  updateQuery('propertyType', e.target.value);
+                }}
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F1EB] dark:bg-[#26211D] border border-black/10 dark:border-white/10 text-xs font-medium text-[#171513] dark:text-white focus:border-[#B8945B] focus:outline-none cursor-pointer"
+              >
+                <option value="All">All Types</option>
+                <option value="Plot">100 Sq. Yards Plot</option>
+                <option value="Apartment">Residential Apartment / Home</option>
+              </select>
+            </div>
+
+            {/* Location */}
+            <div className="space-y-2">
+              <label className="block text-xs font-semibold text-[#171513] dark:text-white uppercase tracking-wider">
+                Location
               </label>
               <select
                 value={city}
@@ -257,110 +307,20 @@ export default function PropertiesClient() {
                   setCity(e.target.value);
                   updateQuery('city', e.target.value);
                 }}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none cursor-pointer"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F1EB] dark:bg-[#26211D] border border-black/10 dark:border-white/10 text-xs font-medium text-[#171513] dark:text-white focus:border-[#B8945B] focus:outline-none cursor-pointer"
               >
-                <option value="All">All Regions</option>
-                <option value="Noida">Noida</option>
-                <option value="Gurgaon">Gurgaon</option>
-                <option value="Greater Noida">Greater Noida &amp; YEIDA</option>
-                <option value="Goa">Goa</option>
-                <option value="Rishikesh">Rishikesh</option>
-                <option value="Tehri Garhwal">Tehri Garhwal</option>
-                <option value="Jim Corbett">Jim Corbett</option>
-                <option value="Dholera">Dholera SIR</option>
-                <option value="Delhi">Delhi</option>
+                <option value="All">All Locations</option>
+                <option value="Saharanpur">Mata Shakumbhari Devi, Saharanpur</option>
+                <option value="Dholera">Dholera SIR, Gujarat</option>
+                <option value="Goa">Goa Coastal &amp; Green Belt</option>
+                <option value="Noida">Noida Expressway</option>
               </select>
-            </div>
-
-            {/* Locality */}
-            <div className="space-y-2">
-              <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
-                Micro-Market / Locality
-              </label>
-              <select
-                value={locality}
-                onChange={(e) => {
-                  setLocality(e.target.value);
-                  updateQuery('locality', e.target.value);
-                }}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none cursor-pointer"
-              >
-                <option value="All">All Micro-Markets</option>
-                <option value="Sector 150">Sector 150 (Sports Corridor)</option>
-                <option value="Sector 124">Sector 124-128 (Expressway Gateway)</option>
-                <option value="Sector 140A">Sector 140A (Cyberthum SEZ)</option>
-                <option value="Golf Course Road">Golf Course Road (DLF 5)</option>
-                <option value="Golf Course Extension">Golf Course Ext. (Sector 65)</option>
-                <option value="Yamuna Expressway">Yamuna Expressway (Airport)</option>
-                <option value="Sohna Road">Sohna Road (Aravallis)</option>
-                <option value="Assagao">Assagao Valley (Goa)</option>
-                <option value="Tapovan">Tapovan (Rishikesh)</option>
-                <option value="Tehri Lake">Tehri Lake Promenade (Tehri)</option>
-                <option value="Kosi Riverfront">Kosi Riverfront (Jim Corbett)</option>
-                <option value="TP2 Activation Area">TP2 Activation Area (Dholera SIR)</option>
-              </select>
-            </div>
-
-            {/* Bedrooms (BHK) */}
-            <div className="space-y-2">
-              <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
-                Bedrooms / Configuration
-              </label>
-              <div className="grid grid-cols-4 gap-1.5">
-                {[
-                  { label: 'Any', val: 0 },
-                  { label: '3 BHK', val: 3 },
-                  { label: '4 BHK', val: 4 },
-                  { label: '5+ BHK', val: 5 }
-                ].map((b) => (
-                  <button
-                    key={b.val}
-                    type="button"
-                    onClick={() => {
-                      setBedrooms(b.val);
-                      updateQuery('bedrooms', b.val.toString());
-                    }}
-                    className={`py-2 text-xs font-semibold rounded-lg border transition-colors ${
-                      bedrooms === b.val
-                        ? 'bg-accent text-black font-bold border-accent shadow-sm'
-                        : 'bg-neutral-50 dark:bg-charcoal-800 text-neutral-700 dark:text-white border-neutral-200 dark:border-charcoal-700 hover:bg-neutral-100 dark:hover:bg-charcoal-700'
-                    }`}
-                  >
-                    {b.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Max Budget Slider */}
-            <div className="space-y-2">
-              <div className="flex justify-between text-xs font-bold">
-                <span className="text-ink dark:text-white uppercase tracking-wider">Max Budget</span>
-                <span className="text-ink dark:text-white font-serif font-bold">{formatPrice(maxPrice)}</span>
-              </div>
-              <input
-                type="range"
-                min={10000000}
-                max={350000000}
-                step={5000000}
-                value={maxPrice}
-                onChange={(e) => {
-                  const val = Number(e.target.value);
-                  setMaxPrice(val);
-                  updateQuery('maxPrice', val.toString());
-                }}
-                className="w-full h-1.5 bg-neutral-200 dark:bg-charcoal-700 rounded-lg appearance-none cursor-pointer accent-accent"
-              />
-              <div className="flex justify-between text-[10px] text-neutral-700 dark:text-white font-medium">
-                <span>₹1 Cr</span>
-                <span>₹35+ Cr</span>
-              </div>
             </div>
 
             {/* Possession Status */}
             <div className="space-y-2">
-              <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
-                Possession Status
+              <label className="block text-xs font-semibold text-[#171513] dark:text-white uppercase tracking-wider">
+                Possession / Readiness
               </label>
               <select
                 value={possession}
@@ -368,14 +328,40 @@ export default function PropertiesClient() {
                   setPossession(e.target.value);
                   updateQuery('possession', e.target.value);
                 }}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F1EB] dark:bg-[#26211D] border border-black/10 dark:border-white/10 text-xs font-medium text-[#171513] dark:text-white focus:border-[#B8945B] focus:outline-none cursor-pointer"
               >
-                <option value="All">Any Status</option>
-                <option value="Ready to Move">Ready to Move</option>
+                <option value="All">All Statuses</option>
+                <option value="Ready to Move">Ready to Move / Immediate</option>
                 <option value="Under Construction">Under Construction</option>
-                <option value="New Launch">New Launch</option>
+                <option value="Off-Plan">Off-Plan / New Launch</option>
               </select>
             </div>
+
+            {/* Max Budget Slider */}
+            <div className="space-y-2 pt-2">
+              <div className="flex justify-between text-xs font-semibold">
+                <span className="text-[#171513] dark:text-white uppercase tracking-wider">Max Budget</span>
+                <span className="text-[#B8945B] font-mono">{formatPrice(maxPrice)}</span>
+              </div>
+              <input
+                type="range"
+                min={900000}
+                max={150000000}
+                step={500000}
+                value={maxPrice}
+                onChange={(e) => {
+                  const val = Number(e.target.value);
+                  setMaxPrice(val);
+                  updateQuery('maxPrice', val.toString());
+                }}
+                className="w-full h-1.5 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-[#B8945B]"
+              />
+              <div className="flex justify-between text-[10px] text-[#171513]/60 dark:text-white/60 font-medium">
+                <span>₹9 Lakhs</span>
+                <span>₹15 Cr+</span>
+              </div>
+            </div>
+
           </div>
 
           {/* Right Main Listings Area */}
@@ -557,8 +543,8 @@ export default function PropertiesClient() {
 
               {/* Category */}
               <div className="space-y-2">
-                <label className="block text-xs font-bold text-ink dark:text-neutral-200 uppercase tracking-wider">
-                  Category
+                <label className="block text-xs font-semibold text-[#171513] dark:text-neutral-200 uppercase tracking-wider">
+                  Purpose &amp; Category
                 </label>
                 <select
                   value={category}
@@ -566,19 +552,20 @@ export default function PropertiesClient() {
                     setCategory(e.target.value);
                     updateQuery('category', e.target.value);
                   }}
-                  className="w-full px-3.5 py-3 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none"
+                  className="w-full px-3.5 py-3 rounded-xl bg-[#F5F1EB] dark:bg-[#26211D] border border-black/10 dark:border-white/10 text-xs font-medium text-[#171513] dark:text-white focus:border-[#B8945B] focus:outline-none"
                 >
                   <option value="All">All Portfolios</option>
-                  <option value="plots">Plots &amp; Land — Pan India</option>
-                  <option value="residential">Residential Apartments</option>
-                  <option value="commercial">Commercial Investment</option>
+                  <option value="Sacred & Spiritual Destinations">Sacred &amp; Spiritual Destinations</option>
+                  <option value="Industrial & Growth Corridors">Industrial &amp; Growth Corridors</option>
+                  <option value="Holiday & Leisure Destinations">Holiday &amp; Leisure Destinations</option>
+                  <option value="Residential Properties — Noida">Residential Properties — Noida</option>
                 </select>
               </div>
 
               {/* City */}
               <div className="space-y-2">
-                <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
-                  City / Region
+                <label className="block text-xs font-semibold text-[#171513] dark:text-white uppercase tracking-wider">
+                  Location
                 </label>
                 <select
                   value={city}
@@ -586,110 +573,63 @@ export default function PropertiesClient() {
                     setCity(e.target.value);
                     updateQuery('city', e.target.value);
                   }}
-                  className="w-full px-3.5 py-3 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none cursor-pointer"
+                  className="w-full px-3.5 py-3 rounded-xl bg-[#F5F1EB] dark:bg-[#26211D] border border-black/10 dark:border-white/10 text-xs font-medium text-[#171513] dark:text-white focus:border-[#B8945B] focus:outline-none cursor-pointer"
                 >
-                  <option value="All">All Regions</option>
-                  <option value="Noida">Noida</option>
-                  <option value="Gurgaon">Gurgaon</option>
-                  <option value="Greater Noida">Greater Noida &amp; YEIDA</option>
-                  <option value="Goa">Goa</option>
-                  <option value="Rishikesh">Rishikesh</option>
-                  <option value="Tehri Garhwal">Tehri Garhwal</option>
-                  <option value="Jim Corbett">Jim Corbett</option>
-                  <option value="Dholera">Dholera SIR</option>
-                  <option value="Delhi">Delhi</option>
+                  <option value="All">All Locations</option>
+                  <option value="Saharanpur">Mata Shakumbhari Devi, Saharanpur</option>
+                  <option value="Dholera">Dholera SIR, Gujarat</option>
+                  <option value="Goa">Goa Coastal &amp; Green Belt</option>
+                  <option value="Noida">Noida Expressway</option>
                 </select>
               </div>
 
-              {/* Locality */}
+              {/* Property Type */}
               <div className="space-y-2">
-                <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
-                  Micro-Market / Locality
+                <label className="block text-xs font-semibold text-[#171513] dark:text-white uppercase tracking-wider">
+                  Property Type
                 </label>
                 <select
-                  value={locality}
+                  value={propertyType}
                   onChange={(e) => {
-                    setLocality(e.target.value);
-                    updateQuery('locality', e.target.value);
+                    setPropertyType(e.target.value);
+                    updateQuery('propertyType', e.target.value);
                   }}
-                  className="w-full px-3.5 py-3 rounded-xl bg-neutral-50 dark:bg-charcoal-800 border border-neutral-200 dark:border-charcoal-700 text-xs font-medium text-ink dark:text-white focus:border-accent focus:outline-none cursor-pointer"
+                  className="w-full px-3.5 py-3 rounded-xl bg-[#F5F1EB] dark:bg-[#26211D] border border-black/10 dark:border-white/10 text-xs font-medium text-[#171513] dark:text-white focus:border-[#B8945B] focus:outline-none cursor-pointer"
                 >
-                  <option value="All">All Localities</option>
-                  <option value="Sector 150">Sector 150, Noida</option>
-                  <option value="Sector 124">Sector 124, Noida</option>
-                  <option value="Sector 128">Sector 128 (Wish Town)</option>
-                  <option value="Sector 140A">Sector 140A, Noida</option>
-                  <option value="Golf Course Road">Golf Course Road, DLF 5</option>
-                  <option value="Sector 65">Golf Course Ext. (Sec 65)</option>
-                  <option value="Yamuna Expressway">Yamuna Expressway (Sector 22D)</option>
-                  <option value="Assagao">Assagao, Goa</option>
-                  <option value="Tapovan">Tapovan, Rishikesh</option>
-                  <option value="Tehri Lake Overlook">Tehri Lake Overlook</option>
-                  <option value="Kosi Riverfront">Kosi Riverfront, Corbett</option>
-                  <option value="TP2 Activation Area">TP2 Activation Area, Dholera</option>
+                  <option value="All">All Types</option>
+                  <option value="Plot">100 Sq. Yards Plot</option>
+                  <option value="Apartment">Residential Apartment / Home</option>
                 </select>
-              </div>
-
-              {/* Bedrooms */}
-              <div className="space-y-2">
-                <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
-                  Bedrooms
-                </label>
-                <div className="grid grid-cols-5 gap-2">
-                  {[
-                    { label: 'All', val: 0 },
-                    { label: '2 BHK', val: 2 },
-                    { label: '3 BHK', val: 3 },
-                    { label: '4 BHK', val: 4 },
-                    { label: '5+ BHK', val: 5 },
-                  ].map((b) => (
-                    <button
-                      key={b.label}
-                      type="button"
-                      onClick={() => {
-                        setBedrooms(b.val);
-                        updateQuery('bedrooms', b.val.toString());
-                      }}
-                      className={`py-2.5 rounded-xl text-xs font-bold border transition-all ${
-                        bedrooms === b.val
-                          ? 'bg-accent text-black font-bold border-accent shadow-sm'
-                          : 'bg-neutral-50 dark:bg-charcoal-800 text-neutral-700 dark:text-white border-neutral-200 dark:border-charcoal-700 hover:bg-neutral-100 dark:hover:bg-charcoal-700'
-                      }`}
-                    >
-                      {b.label}
-                    </button>
-                  ))}
-                </div>
               </div>
 
               {/* Max Budget Slider */}
               <div className="space-y-2">
-                <div className="flex justify-between text-xs font-bold">
-                  <span className="text-ink dark:text-white uppercase tracking-wider">Max Budget</span>
-                  <span className="text-ink dark:text-white font-serif font-bold">{formatPrice(maxPrice)}</span>
+                <div className="flex justify-between text-xs font-semibold">
+                  <span className="text-[#171513] dark:text-white uppercase tracking-wider">Max Budget</span>
+                  <span className="text-[#B8945B] font-mono">{formatPrice(maxPrice)}</span>
                 </div>
                 <input
                   type="range"
-                  min={10000000}
-                  max={350000000}
-                  step={5000000}
+                  min={900000}
+                  max={150000000}
+                  step={500000}
                   value={maxPrice}
                   onChange={(e) => {
                     const val = Number(e.target.value);
                     setMaxPrice(val);
                     updateQuery('maxPrice', val.toString());
                   }}
-                  className="w-full h-2 bg-neutral-200 dark:bg-charcoal-700 rounded-lg appearance-none cursor-pointer accent-accent"
+                  className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-[#B8945B]"
                 />
-                <div className="flex justify-between text-[10px] text-neutral-700 dark:text-white font-bold">
-                  <span>₹1 Cr</span>
-                  <span>₹35+ Cr</span>
+                <div className="flex justify-between text-[10px] text-[#171513]/60 dark:text-white/60 font-medium">
+                  <span>₹9 Lakhs</span>
+                  <span>₹15 Cr+</span>
                 </div>
               </div>
 
               {/* Possession Status */}
               <div className="space-y-2">
-                <label className="block text-xs font-bold text-ink dark:text-white uppercase tracking-wider">
+                <label className="block text-xs font-semibold text-[#171513] dark:text-white uppercase tracking-wider">
                   Possession Status
                 </label>
                 <select

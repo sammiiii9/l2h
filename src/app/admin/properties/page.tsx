@@ -14,7 +14,8 @@ import {
   Check, 
   Loader2,
   Filter,
-  Eye
+  Eye,
+  Mail
 } from 'lucide-react';
 import Link from 'next/link';
 import { Property, PropertyStatus, PropertyCategory, PropertyType, PossessionStatus } from '@/types';
@@ -359,9 +360,9 @@ export default function AdminPropertiesPage() {
                     </td>
 
                     <td className="py-3 px-4">
-                      <div className="text-slate-300 flex items-center gap-2">
-                        <span>👁️ {prop.viewsCount || 0}</span>
-                        <span>✉️ {prop.leadsCount || 0}</span>
+                      <div className="text-slate-300 flex items-center gap-3 text-xs">
+                        <span className="flex items-center gap-1"><Eye className="w-3.5 h-3.5 text-slate-400" /> {prop.viewsCount || 0}</span>
+                        <span className="flex items-center gap-1"><Mail className="w-3.5 h-3.5 text-slate-400" /> {prop.leadsCount || 0}</span>
                       </div>
                     </td>
 
@@ -375,7 +376,7 @@ export default function AdminPropertiesPage() {
                           }`}
                           title="Toggle Featured"
                         >
-                          <Sparkles className="w-3.5 h-3.5" />
+                          <Check className="w-3.5 h-3.5" />
                         </button>
 
                         <Link

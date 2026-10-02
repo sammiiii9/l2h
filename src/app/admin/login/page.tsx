@@ -66,7 +66,7 @@ export default function AdminLoginPage() {
         {/* Demo Credentials Quick Box */}
         <div className="p-4 rounded-2xl bg-black border border-white/10 text-xs space-y-1 text-zinc-300">
           <div className="font-bold text-white flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-zinc-400" />
+            <ShieldCheck className="w-3.5 h-3.5 text-[#B8945B]" />
             <span>Staff Portal Access:</span>
           </div>
           <div className="text-[11px] text-zinc-400">Email: <span className="text-white font-mono">admin@l2h.com</span></div>

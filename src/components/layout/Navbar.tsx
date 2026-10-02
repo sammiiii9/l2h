@@ -36,7 +36,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 15);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -46,10 +46,11 @@ export default function Navbar() {
 
   const navLinks = [
     { label: 'Properties', href: '/properties', icon: Building },
-    { label: 'Plots & Land', href: '/plots', icon: Trees },
-    { label: 'Residential', href: '/residential', icon: Home },
-    { label: 'Commercial', href: '/commercial', icon: Building2 },
-    { label: 'Locations', href: '/locations', icon: MapPin },
+    { label: 'Sacred Destinations', href: '/sacred-destinations', icon: Sparkles },
+    { label: 'Holiday Destinations', href: '/holiday-destinations', icon: Trees },
+    { label: 'Industrial & Growth', href: '/industrial-growth', icon: Building2 },
+    { label: 'Noida Residential', href: '/noida-residential', icon: Home },
+    { label: 'Why L2H', href: '/#why-l2h', icon: Info },
     { label: 'About', href: '/about', icon: Info },
     { label: 'Contact', href: '/contact', icon: Mail },
   ];
@@ -133,7 +134,6 @@ export default function Navbar() {
                 onClick={() => setIsLeadModalOpen(true)}
                 className="h-9 px-5 rounded-xl bg-accent hover:bg-yellow-400 text-black font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-gold-glow hover:shadow-gold-glow-lg whitespace-nowrap flex items-center gap-1.5"
               >
-                <Sparkles className="w-3.5 h-3.5 text-black fill-current" />
                 <span>Talk to an Advisor</span>
               </button>
             </div>

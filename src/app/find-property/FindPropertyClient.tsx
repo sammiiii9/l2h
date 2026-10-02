@@ -131,7 +131,6 @@ export default function FindPropertyClient() {
           <div className="space-y-4 mb-8">
             <div className="flex items-center justify-between">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 dark:bg-charcoal-800 border border-amber-200 dark:border-charcoal-700 text-amber-800 dark:text-accent text-[11px] font-semibold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5 fill-current" />
                 <span>Step {currentStep} of {totalSteps}</span>
               </div>
 
@@ -201,7 +200,7 @@ export default function FindPropertyClient() {
                         </div>
 
                         <p className="text-[11px] text-neutral-600 dark:text-neutral-300 leading-relaxed font-light line-clamp-2">
-                          💡 <strong>Why this fits:</strong> {res.rationale}
+                          <strong className="text-amber-800 dark:text-[#B8945B]">Advisory Fit:</strong> {res.rationale}
                         </p>
                       </div>
 

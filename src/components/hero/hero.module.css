@@ -1,0 +1,83 @@
+﻿.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background-color: #171513;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.heroReplayBtn {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  z-index: 20;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.heroReplayBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #B8945B;
+  transform: scale(1.05);
+}
+
+.heroReplayBtn:focus-visible {
+  outline: 2px solid #B8945B;
+  outline-offset: 3px;
+}
+
+.scrollCue {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .hero * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

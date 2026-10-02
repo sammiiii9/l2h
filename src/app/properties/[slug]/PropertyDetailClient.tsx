@@ -273,7 +273,6 @@ export default function PropertyDetailClient({ property, similarProperties }: Pr
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
                 <div className="space-y-1">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-teal-300 text-xs font-semibold uppercase tracking-wider">
-                    <Sparkles className="w-3.5 h-3.5" />
                     <span>L2H Signature Property Perspective</span>
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight">
@@ -622,7 +621,7 @@ export default function PropertyDetailClient({ property, similarProperties }: Pr
                   }`}
                 >
                   <Scale className="w-4 h-4 text-accent" />
-                  <span>{isCompared ? '✓ Added to Compare' : '+ Compare with Similar'}</span>
+                  <span>{isCompared ? 'In Compare List' : 'Add to Compare'}</span>
                 </button>
 
                 <button
@@ -635,8 +634,9 @@ export default function PropertyDetailClient({ property, similarProperties }: Pr
                 </button>
               </div>
 
-              <div className="pt-2 text-[11px] text-center text-neutral-400 font-light">
-                🔒 Strict fiduciary confidentiality. Zero spam.
+              <div className="pt-2 text-[11px] text-center text-neutral-400 font-light flex items-center justify-center gap-1">
+                <Lock className="w-3 h-3 text-neutral-400 shrink-0" />
+                <span>Strict fiduciary confidentiality. Verified communication.</span>
               </div>
             </div>
           </div>

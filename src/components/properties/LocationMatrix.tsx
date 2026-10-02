@@ -32,10 +32,12 @@ export default function LocationMatrix({ location, connectivity }: LocationMatri
       case 'Airport':
         return Plane;
       case 'Metro':
+      case 'Transit':
         return Train;
       case 'Highway':
         return Car;
       case 'School':
+      case 'Education':
         return GraduationCap;
       case 'Hospital':
         return Building;

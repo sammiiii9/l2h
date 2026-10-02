@@ -175,7 +175,6 @@ export default function InvestmentCalculator({
         <div className="lg:col-span-5 bg-[#121214] rounded-3xl p-6 border border-white/10 space-y-5 flex flex-col justify-between">
           <div className="space-y-4">
             <div className="text-xs uppercase tracking-wider font-bold text-zinc-400 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-zinc-300" />
               <span>Projected {holdingPeriodYears}-Year Financial Outcome</span>
             </div>
 

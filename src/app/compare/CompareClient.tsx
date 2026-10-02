@@ -107,7 +107,6 @@ export default function CompareClient() {
         {/* L2H Comparison Verdict Summary Banner */}
         <div className="bg-white dark:bg-charcoal-900 rounded-3xl p-6 sm:p-8 border border-neutral-200 dark:border-charcoal-800 shadow-luxury-soft space-y-4">
           <div className="flex items-center gap-2 text-amber-700 dark:text-accent text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-4 h-4 fill-current" />
             <span>L2H Advisory Verdict Matrix</span>
           </div>
 

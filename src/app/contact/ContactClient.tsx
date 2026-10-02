@@ -75,7 +75,6 @@ export default function ContactClient() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 dark:bg-charcoal-800 border border-amber-200 dark:border-charcoal-700 text-amber-800 dark:text-accent text-xs font-semibold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5 fill-current" />
             <span>Advisory Connection</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-serif font-bold text-ink dark:text-white tracking-tight">

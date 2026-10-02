@@ -131,7 +131,6 @@ export default function LeadModal({
           <div className="space-y-5">
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-zinc-300 text-[11px] font-semibold uppercase tracking-wider mb-2">
-                <Sparkles className="w-3 h-3 text-zinc-400" />
                 <span>Personalized Real Estate Advisory</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-serif font-bold text-white">

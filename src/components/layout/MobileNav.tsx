@@ -1,59 +1,101 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Compass, Scale, Sparkles, MapPin } from 'lucide-react';
-import { useCompare } from '@/context/CompareContext';
+import { MessageSquare, Phone, Send, Compass, Home, Info, Sparkles } from 'lucide-react';
+import { createWhatsAppUrl } from '@/lib/utils';
+import LeadModal from '@/components/common/LeadModal';
 
 export default function MobileNav() {
   const pathname = usePathname();
-  const { compareList } = useCompare();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
 
   // Hide on admin routes
   if (pathname.startsWith('/admin')) return null;
 
-  const navItems = [
-    { href: '/', label: 'Home', icon: Home, match: (p: string) => p === '/' },
-    { href: '/properties', label: 'Properties', icon: Compass, match: (p: string) => p.startsWith('/properties') },
-    { href: '/locations', label: 'Locations', icon: MapPin, match: (p: string) => p.startsWith('/locations') },
-    { href: '/compare', label: 'Compare', icon: Scale, match: (p: string) => p === '/compare', count: mounted ? compareList.length : 0 },
-    { href: '/find-property', label: 'Match', icon: Sparkles, match: (p: string) => p === '/find-property' },
-  ];
+  const whatsappUrl = createWhatsAppUrl({
+    customMessage: 'Hi L2H Solution, I am inquiring from the website and would like to talk to an advisor.'
+  });
 
   return (
-    <nav className="fixed bottom-0 inset-x-0 bg-white/95 dark:bg-black/95 backdrop-blur-2xl border-t border-neutral-200 dark:border-charcoal-700 z-40 lg:hidden py-1.5 px-2 shadow-2xl safe-area-pb transition-colors duration-200">
-      <div className="flex items-center justify-around max-w-md mx-auto">
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = item.match(pathname);
+    <>
+      <div className="fixed bottom-0 inset-x-0 z-40 lg:hidden bg-[#171513]/95 text-white backdrop-blur-xl border-t border-white/10 shadow-2xl safe-area-pb">
+        
+        {/* Sticky Action CTA Bar (WhatsApp | Call | Enquire) */}
+        <div className="grid grid-cols-3 gap-2 px-3 py-2 border-b border-white/10 bg-black/40">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl bg-[#25D366] text-white text-[11px] font-semibold tracking-wide shadow-sm active:scale-95 transition-transform"
+          >
+            <MessageSquare className="w-3.5 h-3.5 fill-current" />
+            <span>WhatsApp</span>
+          </a>
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`flex flex-col items-center justify-center gap-1 py-1.5 px-3 rounded-xl transition-all relative min-w-[56px] ${
-                isActive 
-                  ? 'text-ink dark:text-white font-bold bg-neutral-100 dark:bg-charcoal-800' 
-                  : 'text-neutral-700 dark:text-white font-medium hover:text-amber-700 dark:hover:text-accent'
-              }`}
-            >
-              <Icon className={`w-4 h-4 ${isActive ? 'text-amber-700 dark:text-accent' : ''}`} />
-              <span className="text-[10px] tracking-tight">{item.label}</span>
-              {item.count && item.count > 0 ? (
-                <span className="absolute top-0.5 right-2 w-3.5 h-3.5 rounded-full bg-accent text-black text-[9px] font-bold flex items-center justify-center shadow-sm">
-                  {item.count}
-                </span>
-              ) : null}
-            </Link>
-          );
-        })}
+          <a
+            href="tel:+918439654385"
+            className="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl bg-white/10 border border-white/20 text-white text-[11px] font-semibold tracking-wide hover:bg-white/20 active:scale-95 transition-transform"
+          >
+            <Phone className="w-3.5 h-3.5 text-[#B8945B]" />
+            <span>Call</span>
+          </a>
+
+          <button
+            type="button"
+            onClick={() => setIsLeadModalOpen(true)}
+            className="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl bg-[#B8945B] text-black text-[11px] font-bold tracking-wide active:scale-95 transition-transform shadow-sm"
+          >
+            <Send className="w-3.5 h-3.5" />
+            <span>Enquire</span>
+          </button>
+        </div>
+
+        {/* Secondary Micro-Navigation Row */}
+        <div className="flex items-center justify-around py-1.5 px-2 text-[10px] text-white/70">
+          <Link
+            href="/"
+            className={`flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg ${pathname === '/' ? 'text-[#B8945B] font-semibold' : 'hover:text-white'}`}
+          >
+            <Home className="w-3.5 h-3.5" />
+            <span>Home</span>
+          </Link>
+
+          <Link
+            href="/properties"
+            className={`flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg ${pathname.startsWith('/properties') ? 'text-[#B8945B] font-semibold' : 'hover:text-white'}`}
+          >
+            <Compass className="w-3.5 h-3.5" />
+            <span>Properties</span>
+          </Link>
+
+          <Link
+            href="/why-l2h"
+            className={`flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg ${pathname === '/why-l2h' ? 'text-[#B8945B] font-semibold' : 'hover:text-white'}`}
+          >
+            <Info className="w-3.5 h-3.5" />
+            <span>Why L2H</span>
+          </Link>
+
+          <Link
+            href="/find-property"
+            className={`flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg ${pathname === '/find-property' ? 'text-[#B8945B] font-semibold' : 'hover:text-white'}`}
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Match</span>
+          </Link>
+        </div>
+
       </div>
-    </nav>
+
+      {/* Advisory Quick Enquire Modal */}
+      <LeadModal
+        isOpen={isLeadModalOpen}
+        onClose={() => setIsLeadModalOpen(false)}
+        title="Talk to a Property Advisor"
+        subtitle="We will listen to your requirements, budget, and purpose first before suggesting verified options."
+      />
+    </>
   );
 }

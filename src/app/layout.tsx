@@ -1,10 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
-import WhatsAppButton from '@/components/common/WhatsAppButton';
-import CompareDrawer from '@/components/common/CompareDrawer';
-import MobileNav from '@/components/layout/MobileNav';
+import LayoutShell from '@/components/layout/LayoutShell';
 import { CompareProvider } from '@/context/CompareContext';
 import { SavedProvider } from '@/context/SavedContext';
 import { ThemeProvider } from '@/context/ThemeContext';
@@ -181,20 +177,15 @@ export default function RootLayout({
         />
       </head>
       <body 
-        className="min-h-screen flex flex-col bg-neutral dark:bg-black text-ink dark:text-neutral-100 selection:bg-accent selection:text-black font-sans antialiased transition-colors duration-200"
+        className="min-h-screen flex flex-col bg-paper dark:bg-[#0E0D0C] text-ink dark:text-neutral-100 selection:bg-gold selection:text-white font-sans antialiased transition-colors duration-200"
         suppressHydrationWarning
       >
         <ThemeProvider>
           <SavedProvider>
             <CompareProvider>
-              <Navbar />
-              <main className="flex-grow">
+              <LayoutShell>
                 {children}
-              </main>
-              <Footer />
-              <CompareDrawer />
-              <MobileNav />
-              <WhatsAppButton />
+              </LayoutShell>
             </CompareProvider>
           </SavedProvider>
         </ThemeProvider>
@@ -202,3 +193,4 @@ export default function RootLayout({
     </html>
   );
 }
+

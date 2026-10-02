@@ -6,10 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --runInBand",
+    "test:bug": "jest --runInBand --testPathPattern=bugcondition"
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "gsap": "^3.15.0",
     "lucide-react": "^0.453.0",
     "next": "^16.3.1",
     "react": "^18.3.1",
@@ -17,13 +20,17 @@
     "tailwind-merge": "^2.5.4"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "@types/node": "^20.17.0",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",
     "isomorphic-git": "^1.41.7",
+    "jest": "^30.5.1",
+    "jest-environment-node": "^30.5.1",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
+    "ts-jest": "^29.4.12",
     "typescript": "^5.6.3"
   }
 }

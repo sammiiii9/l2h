@@ -140,32 +140,40 @@ export const PropertyService = {
 
       if (filters.category && filters.category !== 'All') {
         const catLower = filters.category.toLowerCase();
-        if (catLower === 'plots' || catLower === 'plot' || catLower === 'land') {
+        if (catLower.includes('sacred') || catLower.includes('spiritual')) {
           list = list.filter(p => 
-            p.category.toLowerCase() === 'plots' || 
-            p.category.toLowerCase() === 'plot' || 
-            p.propertyType.toLowerCase() === 'plot'
+            p.category.toLowerCase().includes('sacred') || 
+            p.category.toLowerCase().includes('spiritual')
           );
-        } else if (catLower === 'residential' || catLower === 'apartments' || catLower === 'apartment' || catLower === 'villas' || catLower === 'villa' || catLower === 'homes') {
+        } else if (catLower.includes('holiday') || catLower.includes('leisure')) {
           list = list.filter(p => 
-            p.category.toLowerCase() === 'apartments' || 
-            p.category.toLowerCase() === 'villas' || 
-            p.category.toLowerCase() === 'homes' || 
-            p.category.toLowerCase() === 'residential' || 
-            p.category.toLowerCase() === 'luxury properties' || 
+            p.category.toLowerCase().includes('holiday') || 
+            p.category.toLowerCase().includes('leisure')
+          );
+        } else if (catLower.includes('industrial') || catLower.includes('growth')) {
+          list = list.filter(p => 
+            p.category.toLowerCase().includes('industrial') || 
+            p.category.toLowerCase().includes('growth')
+          );
+        } else if (catLower.includes('noida') || catLower.includes('residential') || catLower.includes('home') || catLower.includes('apartment')) {
+          list = list.filter(p => 
+            p.category.toLowerCase().includes('residential') || 
+            p.category.toLowerCase().includes('noida') ||
             p.propertyType.toLowerCase() === 'apartment' || 
+            p.propertyType.toLowerCase() === 'residential' ||
             p.propertyType.toLowerCase() === 'penthouse' || 
             p.propertyType.toLowerCase() === 'villa'
           );
-        } else if (catLower === 'commercial' || catLower === 'investments' || catLower === 'investment') {
+        } else if (catLower === 'plots' || catLower === 'plot' || catLower === 'land') {
           list = list.filter(p => 
-            p.category.toLowerCase() === 'commercial' || 
-            p.category.toLowerCase() === 'investments' || 
-            p.propertyType.toLowerCase() === 'office' || 
-            p.propertyType.toLowerCase() === 'retail'
+            p.propertyType.toLowerCase() === 'plot' || 
+            p.category.toLowerCase().includes('plot') ||
+            p.category.toLowerCase().includes('sacred') ||
+            p.category.toLowerCase().includes('holiday') ||
+            p.category.toLowerCase().includes('industrial')
           );
         } else {
-          list = list.filter(p => p.category.toLowerCase() === catLower || p.propertyType.toLowerCase() === catLower);
+          list = list.filter(p => p.category.toLowerCase().includes(catLower) || p.propertyType.toLowerCase() === catLower);
         }
       }
 

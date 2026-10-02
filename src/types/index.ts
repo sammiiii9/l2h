@@ -1,10 +1,17 @@
 export type PropertyCategory = 
+  | 'Sacred & Spiritual Destinations'
+  | 'Holiday & Leisure Destinations'
+  | 'Industrial & Growth Corridors'
+  | 'Residential Properties — Noida'
+  | 'Sacred Destination'
+  | 'Holiday & Leisure'
+  | 'Industrial & Growth'
+  | 'Residential'
   | 'plots'
   | 'residential'
   | 'commercial'
-  | 'Plots'
-  | 'Residential'
   | 'Commercial'
+  | 'Plots'
   | 'Homes'
   | 'Apartments'
   | 'Villas'
@@ -24,12 +31,13 @@ export type PropertyType =
   | 'Retail'
   | 'Penthouse'
   | 'Duplex'
+  | 'Residential'
   | 'Commercial'
   | 'Other';
 
-export type PossessionStatus = 'Ready to Move' | 'Under Construction' | 'New Launch';
+export type PossessionStatus = 'Ready to Move' | 'Under Construction' | 'Off-Plan' | 'New Launch';
 
-export type PropertyStatus = 'Active' | 'Draft' | 'Sold Out' | 'Coming Soon' | 'Archived';
+export type PropertyStatus = 'Currently Available' | 'New Opportunity' | 'Active' | 'Draft' | 'Sold Out' | 'Coming Soon' | 'Archived';
 
 export type VerificationStatus = 
   | 'Verified'
@@ -37,7 +45,16 @@ export type VerificationStatus =
   | 'Developer Provided'
   | 'Information Pending Verification';
 
-export type PurposeType = 'End Use' | 'Investment' | 'Rental' | 'Capital Appreciation' | 'Both';
+export type PurposeType = 
+  | 'Home' 
+  | 'Investment' 
+  | 'Spiritual Destination' 
+  | 'Holiday Property' 
+  | 'Industrial / Growth Opportunity'
+  | 'End Use' 
+  | 'Rental' 
+  | 'Capital Appreciation' 
+  | 'Both';
 
 export interface Advisor {
   id: string;
@@ -132,7 +149,7 @@ export interface ConnectivityItem {
   destination: string;
   distance: string;
   time: string;
-  type: 'Metro' | 'Airport' | 'Highway' | 'School' | 'Hospital' | 'Business' | 'Retail' | 'Lifestyle';
+  type: 'Metro' | 'Airport' | 'Highway' | 'School' | 'Hospital' | 'Business' | 'Retail' | 'Lifestyle' | 'Transit' | 'Education' | 'Other';
 }
 
 export interface FloorPlan {
@@ -397,6 +414,12 @@ export interface LocationHub {
   connectivityHighlights: string[];
   lifestyleAndSocialInfra: string[];
   investmentOutlook: string;
+  categoryType?: 'Sacred' | 'Holiday' | 'Industrial' | 'Residential';
+  isActiveProject?: boolean;
+  isExploring?: boolean;
+  statusText?: string;
+  startingPriceDisplay?: string;
+  plotSizeDisplay?: string;
   faqs: { question: string; answer: string }[];
 }
 

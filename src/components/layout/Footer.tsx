@@ -31,7 +31,6 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-1 text-center md:text-left">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 dark:bg-charcoal-800 border border-amber-200 dark:border-charcoal-700 text-amber-800 dark:text-accent text-xs font-semibold uppercase tracking-wider mb-1">
-                <Sparkles className="w-3.5 h-3.5 fill-current" />
                 <span>The L2H Advisory Standard</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-serif font-bold text-ink dark:text-white tracking-tight">

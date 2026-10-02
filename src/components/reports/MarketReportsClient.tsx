@@ -128,7 +128,6 @@ export default function MarketReportsClient({ reports }: MarketReportsClientProp
                 {/* Key Findings Callout */}
                 <div className="p-5 rounded-2xl bg-zinc-50 border border-zinc-200 space-y-3">
                   <span className="text-xs font-bold uppercase tracking-wider text-zinc-950 flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-zinc-700" />
                     <span>Key Strategic Takeaways</span>
                   </span>
                   <ul className="space-y-2 text-xs text-zinc-700 leading-relaxed font-light">
